@@ -91,13 +91,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_editMember) {
             // todo by
+
         } else if (id == R.id.nav_addBook) {
             getFragmentManager().beginTransaction().replace(R.id.frame_content, new AddBookFragment()).commit();
             mToolbar.setTitle("Add New Book");
         } else if (id == R.id.nav_addCopy) {
             // todo by
+
         } else if (id == R.id.nav_logout) {
             // todo by
+
         } else if (id == R.id.nav_setting) {
 
         }
