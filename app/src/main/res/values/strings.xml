@@ -21,4 +21,36 @@
 
     <string name="txt_input_member_id_hint">Input memberId</string>
     <string name="btn_search">Search</string>
+    <string name="btn_add_member">Add</string>
+
+    <string name="action_add_member">Add New Member</string>
+    <string name="action_add_member_short">Add Member</string>
+    <string name="action_add_book">Add New Book</string>
+    <string name="action_add_book_short">Add Book</string>
+    <string name="action_add_author">Add One Author</string>
+    <string name="action_add_author_short">Add Author</string>
+
+    <!--- add member form labels -->
+    <string name="str_member_firstname">FirstName:</string>
+    <string name="str_member_lastname">FirstName:</string>
+    <string name="str_member_phone">Phone:</string>
+
+    <string name="str_address_street">Street:</string>
+    <string name="str_address_city">City:</string>
+    <string name="str_address_state">State:</string>
+    <string name="str_address_zip">ZIP:</string>
+
+    <string name="str_book_title">Title:</string>
+    <string name="str_book_isbn">ISBN:</string>
+    <string name="str_book_available">Is available</string>
+    <string name="str_book_rent_long">21 days</string>
+    <string name="str_book_rent_short">7 days</string>
+    
+    <string name="str_author_firstname">FirstName:</string>
+    <string name="str_author_lastname">LastName:</string>
+    <string name="str_author_phone">Phone:</string>
+    <string name="str_author_credentials">Credentials:</string>
+    <string name="str_author_shortbio">Short Bio:</string>
+
+
 </resources>

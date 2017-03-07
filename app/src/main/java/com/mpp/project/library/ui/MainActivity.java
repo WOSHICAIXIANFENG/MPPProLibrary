@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_editMember) {
             // todo by
+            getFragmentManager().beginTransaction().replace(R.id.frame_content, new AddAMemberFragment()).commit();
+            mToolbar.setTitle("Add new member");
 
         } else if (id == R.id.nav_addBook) {
             getFragmentManager().beginTransaction().replace(R.id.frame_content, new AddBookFragment()).commit();
