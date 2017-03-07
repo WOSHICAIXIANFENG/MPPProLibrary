@@ -30,6 +30,10 @@ public class RedisHelper {
         return jedis.get(key);
     }
 
+    public boolean HasKey(String key) {
+        return jedis.exists(key);
+    }
+
     public void RemoveInfo(String key) {
         jedis.del(key);
     }

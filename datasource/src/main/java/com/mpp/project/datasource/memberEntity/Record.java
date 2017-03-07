@@ -1,4 +1,4 @@
-package com.mpp.project.datasource.borrowerEntity;
+package com.mpp.project.datasource.memberEntity;
 
 /**
  * Created by hongleyou on 2017/3/6.
