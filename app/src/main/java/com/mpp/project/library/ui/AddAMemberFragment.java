@@ -1,25 +1,18 @@
 package com.mpp.project.library.ui;
 
-import android.app.Fragment;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.mpp.project.library.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by Samuel on 6/3/17.
  */
 
-public class AddAMemberFragment extends Fragment {
+public class AddAMemberFragment extends BaseFragment {
     @Bind(R.id.et_firstname)
     EditText mFirstNameBox;
 
@@ -45,12 +38,8 @@ public class AddAMemberFragment extends Fragment {
     Button mSaveBtn;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_add_member, container, false);
-        ButterKnife.bind(this, view);
-
-        return view;
+    int getLayoutXml() {
+        return R.layout.frag_add_member;
     }
 
     @OnClick(R.id.bt_add)
@@ -75,17 +64,6 @@ public class AddAMemberFragment extends Fragment {
             return false;
         }
 
-        return true;
-    }
-
-    private boolean valideInputField(EditText editText) {
-        String input = editText.getText().toString();
-        if (TextUtils.isEmpty(input)) {
-            editText.setError(getString(R.string.error_field_required));
-            editText.requestFocus();
-
-            return false;
-        }
         return true;
     }
 }

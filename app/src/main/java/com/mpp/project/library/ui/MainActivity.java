@@ -1,5 +1,6 @@
 package com.mpp.project.library.ui;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -15,8 +16,11 @@ import android.view.View;
 
 import com.mpp.project.library.R;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, INavigate {
     private Toolbar mToolbar;
+    private Fragment mCurrentFragment;
+    private NavigationView mNavigationView;
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +39,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -55,10 +58,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    public void toggleDrawer() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            drawer.openDrawer(GravityCompat.START);
+        }
+    }
+
+    // done/save/submit item
+    private MenuItem mDoneAction;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        // done/save/submit item
+        mDoneAction = menu.getItem(0);
+        mDoneAction.setVisible(false);
+
         return true;
     }
 
@@ -70,7 +89,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_down) {
+            // todo
             return true;
         }
 
@@ -86,17 +106,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_checkout) {
             // Handle the check out action
             // use check out fragment to replace
-            getFragmentManager().beginTransaction().replace(R.id.frame_content, new CheckoutFragment()).commit();
+            mCurrentFragment = new CheckoutFragment();
+            getFragmentManager().beginTransaction().addToBackStack("CheckoutFragment").replace(R.id.frame_content, mCurrentFragment).commit();
             mToolbar.setTitle("Check Out");
 
         } else if (id == R.id.nav_editMember) {
-            // todo by
-            getFragmentManager().beginTransaction().replace(R.id.frame_content, new AddAMemberFragment()).commit();
+            mCurrentFragment = new AddAMemberFragment();
+            getFragmentManager().beginTransaction().addToBackStack("AddAMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
             mToolbar.setTitle("Add new member");
 
         } else if (id == R.id.nav_addBook) {
-            getFragmentManager().beginTransaction().replace(R.id.frame_content, new AddBookFragment()).commit();
+            mCurrentFragment = new AddBookFragment();
+            getFragmentManager().beginTransaction().addToBackStack("AddBookFragment").replace(R.id.frame_content, mCurrentFragment).commit();
             mToolbar.setTitle("Add New Book");
+
         } else if (id == R.id.nav_addCopy) {
             // todo by
 
@@ -110,5 +133,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void openAddAuthorPage() {
+        mCurrentFragment = new AddAuthorDialog();
+        getFragmentManager().beginTransaction().addToBackStack("AddAuthorDialog").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Add one author");
+
+        // show back icon
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        mDoneAction.setVisible(true);
+
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCurrentFragment instanceof AddAuthorDialog) {
+                    getFragmentManager().popBackStackImmediate();
+                    mCurrentFragment = getFragmentManager().findFragmentById(R.id.frame_content);
+                    mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+                    mDoneAction.setVisible(false);
+                } else {
+                    // todo
+                    toggleDrawer();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void closeAddAuthorPage() {
+
     }
 }

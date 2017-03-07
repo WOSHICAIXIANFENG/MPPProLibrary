@@ -18,10 +18,16 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="action_down">Done</string>
+    <string name="action_save">Save</string>
+    <string name="action_submit">Submit</string>
 
     <string name="txt_input_member_id_hint">Input memberId</string>
     <string name="btn_search">Search</string>
     <string name="btn_add_member">Add</string>
+    <string name="btn_add_author">Save Author</string>
+    <string name="btn_add_author_label">Add</string>
+    <string name="btn_add_book_label">Add This Book To Library</string>
 
     <string name="action_add_member">Add New Member</string>
     <string name="action_add_member_short">Add Member</string>
@@ -43,9 +49,13 @@
     <string name="str_book_title">Title:</string>
     <string name="str_book_isbn">ISBN:</string>
     <string name="str_book_available">Is available</string>
+    
+    <string name="str_book_rent_set">Set tenancy period:</string>
     <string name="str_book_rent_long">21 days</string>
     <string name="str_book_rent_short">7 days</string>
-    
+
+    <string name="str_book_authors_label">Authors:</string>
+
     <string name="str_author_firstname">FirstName:</string>
     <string name="str_author_lastname">LastName:</string>
     <string name="str_author_phone">Phone:</string>

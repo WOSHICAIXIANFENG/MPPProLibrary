@@ -12,9 +12,9 @@
             android:id="@+id/et_firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/str_member_firstname"
+            android:hint="@string/str_author_firstname"
             android:imeActionId="@+id/bt_add"
-            android:imeActionLabel="@string/action_add_member_short"
+            android:imeActionLabel="@string/action_add_author_short"
             android:imeOptions="actionUnspecified"
             android:maxLines="1"
             android:singleLine="true" />
@@ -30,9 +30,9 @@
             android:id="@+id/et_lastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/str_member_lastname"
+            android:hint="@string/str_author_lastname"
             android:imeActionId="@+id/bt_add"
-            android:imeActionLabel="@string/action_add_member_short"
+            android:imeActionLabel="@string/action_add_author_short"
             android:imeOptions="actionUnspecified"
             android:maxLines="1"
             android:singleLine="true" />
@@ -47,15 +47,47 @@
             android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/str_member_phone"
+            android:hint="@string/str_author_phone"
             android:imeActionId="@+id/bt_add"
-            android:imeActionLabel="@string/action_add_member_short"
+            android:imeActionLabel="@string/action_add_author_short"
             android:imeOptions="actionUnspecified"
             android:maxLines="1"
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_credentials"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="@string/str_author_credentials"
+            android:imeActionId="@+id/bt_add"
+            android:imeActionLabel="@string/action_add_author_short"
+            android:imeOptions="actionUnspecified"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_shortbio"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="@string/str_author_shortbio"
+            android:imeActionId="@+id/bt_add"
+            android:imeActionLabel="@string/action_add_author_short"
+            android:imeOptions="actionUnspecified"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
 
     <include layout="@layout/frag_address" />
 
@@ -63,7 +95,7 @@
         android:id="@+id/bt_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_add_member"
+        android:text="@string/btn_add_author"
         android:layout_margin="15dp"
         android:layout_marginTop="35dp" />
 </LinearLayout>
