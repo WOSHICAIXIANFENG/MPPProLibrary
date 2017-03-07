@@ -34,6 +34,8 @@ public class BookEntity implements Serializable {
 
     public String getTitle() { return title; }
 
+    public String getIsbn() { return isbn; }
+
     @Override
     public String toString() {
         return "BookInfo{" +

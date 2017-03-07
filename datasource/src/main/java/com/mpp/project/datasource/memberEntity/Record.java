@@ -1,4 +1,4 @@
-package com.mpp.project.datasource.borrowerEntity;
+package com.mpp.project.datasource.memberEntity;
 
 /**
  * Created by hongleyou on 2017/3/6.
@@ -9,7 +9,6 @@ public class Record {
     private String bookID;
     private String checkOutDay;
     private String dueDay;
-    private String returnOnTime;
     private int laterDays;
     private double fine;
 
@@ -17,7 +16,6 @@ public class Record {
         this.isbn = isbn;
         this.checkOutDay = checkOutDay;
         this.dueDay = dueDay;
-        this.returnOnTime = returnOnTime;
         this.laterDays = laterDays;
         this.fine = fine;
     }
@@ -28,7 +26,6 @@ public class Record {
                 "isbn='" + isbn + '\'' +
                 ", checkOutDay='" + checkOutDay + '\'' +
                 ", dueDay='" + dueDay + '\'' +
-                ", returnOnTime='" + returnOnTime + '\'' +
                 ", laterDays=" + laterDays +
                 ", fine=" + fine +
                 '}';
