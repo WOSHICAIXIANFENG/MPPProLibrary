@@ -1,4 +1,4 @@
-package com.mpp.project.datasource.entity;
+package com.mpp.project.datasource.bookEntity;
 import java.io.Serializable;
 import java.util.List;
 /**
@@ -28,13 +28,11 @@ public class BookEntity implements Serializable {
         this.authors = authors;
     }
 
-    public String toJson() {
-        return null;
-    }
-
     public String getBookID() {
         return bookID;
     }
+
+    public String getTitle() { return title; }
 
     @Override
     public String toString() {

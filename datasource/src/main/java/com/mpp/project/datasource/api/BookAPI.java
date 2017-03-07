@@ -1,6 +1,6 @@
 package com.mpp.project.datasource.api;
 
-import com.mpp.project.datasource.entity.BookEntity;
+import com.mpp.project.datasource.bookEntity.BookEntity;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public abstract interface BookAPI {
 
     BookEntity getBook(String bookID);
 
-    List<BookEntity> searchBook(String name);
+    List<BookEntity> searchBook(String pattern);
 
     List<BookEntity> getBookCopys(String bookName);
 }
