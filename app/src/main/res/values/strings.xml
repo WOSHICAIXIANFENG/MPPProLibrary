@@ -24,6 +24,7 @@
     <string name="action_save">Save</string>
     <string name="action_submit">Submit</string>
 
+    <string name="txt_input_book_isbn">Input ISBN</string>
     <string name="txt_input_member_id_hint">Input memberId</string>
     <string name="btn_search">Search</string>
     <string name="btn_add_member">Add</string>

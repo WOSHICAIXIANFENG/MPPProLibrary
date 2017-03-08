@@ -118,6 +118,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_down) {
             // todo
+            String title = mDoneAction.getTitle().toString();
+            if ("DONE".equals(title)) {
+
+            } else if ("CHECKOUT".equals(title)) {
+                // check out logic
+            }
             return true;
         }
 
@@ -184,6 +190,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void closeAddAuthorPage() {
 
+    }
+
+    @Override
+    public void showCheckOutBtn() {
+        // show Check out btn on the top right area
+        mDoneAction.setTitle("CheckOut");
+        mDoneAction.setVisible(true);
     }
 
     public void openCheckOutPage() {

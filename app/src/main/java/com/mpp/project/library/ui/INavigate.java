@@ -8,4 +8,6 @@ public interface INavigate {
     void openAddAuthorPage();
 
     void closeAddAuthorPage();
+
+    void showCheckOutBtn();
 }

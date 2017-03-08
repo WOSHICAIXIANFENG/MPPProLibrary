@@ -38,8 +38,37 @@ public class CheckOutPresenter {
                     }
 
                     iCheckoutView.showCheckoutRecord(dataSet);
+                    iCheckoutView.showSearchBookLayout();
                 } else {
                     iCheckoutView.showFailMsg(R.string.str_tip_not_found_member);
+                    iCheckoutView.clearRecordList();
+                }
+            }
+        }).start();
+    }
+
+    public void searchBookByISBN(final String isbn) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<BookEntity> bookEntities = APIHelper.getInstance().getBooksFromISBN(isbn);
+                boolean isAvaliable = false;
+                BookEntity dest = null;
+                for (BookEntity bookEntity : bookEntities) {
+                    if ("Yes".equals(bookEntity.getAvailability())) {
+                        isAvaliable = true;
+                        dest = bookEntity;
+                        break;
+                    }
+                }
+
+                if (isAvaliable) {
+                    iCheckoutView.showBookEntityOnPage(dest);
+                    // show Checkout Button
+                    iCheckoutView.showCheckOutSubmitBtn();
+                } else {
+                    iCheckoutView.showFailMsg(R.string.str_tip_book_un_available);
+                    iCheckoutView.clearBookDetails();
                 }
             }
         }).start();
