@@ -52,8 +52,9 @@
     <string name="str_book_title">Title:</string>
     <string name="str_book_isbn">ISBN:</string>
     <string name="str_book_available">Is available</string>
+    <string name="str_book_copy_num">Copy Numbers:</string>
     
-    <string name="str_book_rent_set">Set tenancy period:</string>
+    <string name="str_book_rent_set">Maximum checkout length:</string>
     <string name="str_book_rent_long">21 days</string>
     <string name="str_book_rent_short">7 days</string>
 

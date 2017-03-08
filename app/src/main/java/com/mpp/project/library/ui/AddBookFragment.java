@@ -35,9 +35,10 @@ public class AddBookFragment extends BaseFragment {
     RadioButton mRentShort;
     @Bind(R.id.rb_rent_long)
     RadioButton mRentLong;
-
     @Bind(R.id.rg_rent_period)
     RadioGroup mRentPeriod;
+    @Bind(R.id.et_copyNum)
+    EditText mCopyNumBox;
 
     @Bind(R.id.btn_add_author)
     Button mBtnAddAuthor;
@@ -56,6 +57,9 @@ public class AddBookFragment extends BaseFragment {
     @Override
     protected void initData() {
         authorBeanList = new ArrayList<>();
+
+        // default value
+        mCopyNumBox.setText("1");
     }
 
     @OnClick(R.id.btn_add_author)

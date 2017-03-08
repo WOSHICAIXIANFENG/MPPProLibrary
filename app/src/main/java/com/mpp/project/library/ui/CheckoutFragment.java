@@ -14,9 +14,9 @@ import butterknife.OnClick;
 
 public class CheckoutFragment extends BaseFragment {
     @Bind(R.id.et_memberId)
-    private EditText mInputMemberId;
+    EditText mInputMemberId;
     @Bind(R.id.bt_search)
-    private Button mSearchBtn;
+    Button mSearchBtn;
 
     @Override
     int getLayoutXml() {
