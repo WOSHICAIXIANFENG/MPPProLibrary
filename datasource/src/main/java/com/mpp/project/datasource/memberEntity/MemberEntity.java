@@ -8,14 +8,27 @@ import java.util.List;
 
 public class MemberEntity {
     private String memberID;
+    private String firstName;
+    private String lastName;
     private String phone;
-    private String address;
+
+    // address info...
+    private String street;
+    private String zip;
+    private String city;
+    private String state;
     private List<Record> records;
 
-    public MemberEntity(String memberID, String phone, String address, List<Record> records) {
+    public MemberEntity(String memberID, String firstName, String lastName, String phone,
+                        String street, String zip, String city, String state, List<Record> records) {
         this.memberID = memberID;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
-        this.address = address;
+        this.street = street;
+        this.zip = zip;
+        this.city = city;
+        this.state = state;
         this.records = records;
     }
 
@@ -25,10 +38,6 @@ public class MemberEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public void addRecord(Record record) {
@@ -43,10 +52,6 @@ public class MemberEntity {
         return phone;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
     public List<Record> getRecords() {
         return records;
     }
@@ -55,13 +60,51 @@ public class MemberEntity {
         this.records = records;
     }
 
-    @Override
-    public String toString() {
-        return "MemberEntity{" +
-                "memberID='" + memberID + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", records=" + records +
-                '}';
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
