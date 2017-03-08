@@ -12,7 +12,7 @@ public class Record {
     private int laterDays;
     private double fine;
 
-    public Record(String isbn, String bookID,String checkOutDay, String dueDay, String returnOnTime, int laterDays, double fine) {
+    public Record(String isbn, String bookID, String checkOutDay, String dueDay, int laterDays, double fine) {
         this.isbn = isbn;
         this.bookID = bookID;
         this.checkOutDay = checkOutDay;

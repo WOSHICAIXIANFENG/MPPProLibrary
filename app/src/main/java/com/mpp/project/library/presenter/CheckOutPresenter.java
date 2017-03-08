@@ -28,23 +28,28 @@ public class CheckOutPresenter {
             public void run() {
                 MemberEntity memberEntity = APIHelper.getInstance().getMemberRecord(memberId);
                 if (memberEntity != null) {
-                    List<Record> recordList = memberEntity.getRecords();
-
-                    List<CheckoutBean> dataSet = new ArrayList<>();
-                    for (Record record : recordList) {
-                        BookEntity bookEntity = APIHelper.getInstance().getBookFromBookID(record.getBookID());
-                        String bookTitle = bookEntity.getTitle();
-                        dataSet.add(new CheckoutBean(record.getBookID(), bookTitle, record.getCheckOutDay()));
-                    }
-
-                    iCheckoutView.showCheckoutRecord(dataSet);
+                    List<CheckoutBean> dataSet = convertRecordList(memberEntity);
+                    iCheckoutView.showCheckoutRecord(memberEntity, dataSet);
                     iCheckoutView.showSearchBookLayout();
                 } else {
-                    iCheckoutView.showFailMsg(R.string.str_tip_not_found_member);
+                    iCheckoutView.showMsg(R.string.str_tip_not_found_member);
                     iCheckoutView.clearRecordList();
                 }
             }
         }).start();
+    }
+
+    private List<CheckoutBean> convertRecordList(MemberEntity memberEntity) {
+        List<Record> recordList = memberEntity.getRecords();
+        List<CheckoutBean> dataSet = new ArrayList<>();
+
+        for (int i = 0; i < recordList.size(); i ++) {
+            Record record = recordList.get(recordList.size() - i - 1);
+            BookEntity bookEntity = APIHelper.getInstance().getBookFromBookID(record.getBookID());
+            String bookTitle = bookEntity.getTitle();
+            dataSet.add(new CheckoutBean(record.getBookID(), bookTitle, record.getCheckOutDay()));
+        }
+        return dataSet;
     }
 
     public void searchBookByISBN(final String isbn) {
@@ -67,9 +72,44 @@ public class CheckOutPresenter {
                     // show Checkout Button
                     iCheckoutView.showCheckOutSubmitBtn();
                 } else {
-                    iCheckoutView.showFailMsg(R.string.str_tip_book_un_available);
+                    iCheckoutView.showMsg(R.string.str_tip_book_un_available);
                     iCheckoutView.clearBookDetails();
                 }
+            }
+        }).start();
+    }
+
+    public void doCheckoutLogic(final BookEntity bookEntity, final MemberEntity memberEntity) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String keepDays = bookEntity.getKeep_days();
+                int days = 21;
+                try {
+                    days = Integer.parseInt(keepDays);
+                } catch (Exception e) {
+
+                }
+
+                Record record = new Record(
+                        bookEntity.getIsbn(),
+                        bookEntity.getBookID(),
+                        "2017-03-10",
+                        "2017-03-31",
+                        0, 0);
+
+                List<Record> records = memberEntity.getRecords();
+                if (records != null) {
+                    records.add(record);
+                }
+
+                // add one record
+                APIHelper.getInstance().editMember(memberEntity);
+                List<CheckoutBean> dataSet = convertRecordList(memberEntity);
+                iCheckoutView.showCheckoutRecord(memberEntity, dataSet);
+                iCheckoutView.clearBookDetails();
+                iCheckoutView.hideCheckOutSubmitBtn();
+                iCheckoutView.showMsg(R.string.str_tip_checkout_success);
             }
         }).start();
     }

@@ -1,6 +1,7 @@
 package com.mpp.project.library.ui;
 
 import com.mpp.project.datasource.bookEntity.BookEntity;
+import com.mpp.project.datasource.memberEntity.MemberEntity;
 import com.mpp.project.library.bean.CheckoutBean;
 
 import java.util.List;
@@ -10,9 +11,9 @@ import java.util.List;
  */
 
 public interface ICheckoutView {
-    void showFailMsg(int msgId);
+    void showMsg(int msgId);
 
-    void showCheckoutRecord(List<CheckoutBean> records);
+    void showCheckoutRecord(MemberEntity memberEntity, List<CheckoutBean> records);
 
     void showBookEntityOnPage(BookEntity bookEntity);
 
@@ -23,4 +24,5 @@ public interface ICheckoutView {
     void clearBookDetails();
 
     void showCheckOutSubmitBtn();
+    void hideCheckOutSubmitBtn();
 }

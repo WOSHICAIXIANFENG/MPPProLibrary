@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.mpp.project.datasource.bookEntity.Author;
 import com.mpp.project.datasource.bookEntity.BookEntity;
+import com.mpp.project.datasource.memberEntity.MemberEntity;
 import com.mpp.project.library.R;
 import com.mpp.project.library.bean.CheckoutBean;
 import com.mpp.project.library.presenter.CheckOutPresenter;
@@ -51,6 +52,8 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
     private List<CheckoutBean> mBeans;
 
     private CheckOutPresenter mPresenter;
+    private MemberEntity memberEntity;
+    private BookEntity bookEntity;
 
     @Override
     int getLayoutXml() {
@@ -86,7 +89,7 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
     }
 
     @Override
-    public void showFailMsg(final int msgId) {
+    public void showMsg(final int msgId) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -96,7 +99,9 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
     }
 
     @Override
-    public void showCheckoutRecord(final List<CheckoutBean> records) {
+    public void showCheckoutRecord(MemberEntity memberEntity, final List<CheckoutBean> records) {
+        this.memberEntity = memberEntity;
+
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -108,6 +113,8 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
 
     @Override
     public void showBookEntityOnPage(final BookEntity bookEntity) {
+        this.bookEntity = bookEntity;
+
         // update widgets
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -163,6 +170,9 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
                 mBookTitle.setText("");
                 mBookISBN.setText("");
                 mBookAuthor.setText("");
+
+                // set null
+                bookEntity = null;
             }
         });
     }
@@ -178,6 +188,18 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
         });
     }
 
+    @Override
+    public void hideCheckOutSubmitBtn() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                INavigate iNavigate = (INavigate) getActivity();
+                iNavigate.hideCheckOutBtn();
+            }
+        });
+    }
+
+
     @OnClick(R.id.bt_search_book)
     void onClickSearchBookBtn() {
         String isbn = mBookISBNBox.getText().toString();
@@ -187,5 +209,9 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
         }
 
         mPresenter.searchBookByISBN(isbn);
+    }
+
+    void doCheckoutLogic() {
+        mPresenter.doCheckoutLogic(bookEntity, memberEntity);
     }
 }

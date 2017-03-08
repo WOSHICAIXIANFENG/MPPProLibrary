@@ -10,4 +10,5 @@ public interface INavigate {
     void closeAddAuthorPage();
 
     void showCheckOutBtn();
+    void hideCheckOutBtn();
 }

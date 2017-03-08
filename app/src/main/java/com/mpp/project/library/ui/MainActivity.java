@@ -119,10 +119,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.action_down) {
             // todo
             String title = mDoneAction.getTitle().toString();
+            System.out.println("Samuel Test title = " + title);
+
             if ("DONE".equals(title)) {
 
-            } else if ("CHECKOUT".equals(title)) {
+            } else if ("CheckOut".equals(title)) {
                 // check out logic
+                if (mCurrentFragment instanceof CheckoutFragment) {
+                    CheckoutFragment checkoutFragment = (CheckoutFragment) mCurrentFragment;
+                    checkoutFragment.doCheckoutLogic();
+                }
             }
             return true;
         }
@@ -199,6 +205,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDoneAction.setVisible(true);
     }
 
+    @Override
+    public void hideCheckOutBtn() {
+        mDoneAction.setVisible(false);
+    }
+
     public void openCheckOutPage() {
         // use check out fragment to replace
         mCurrentFragment = new CheckoutFragment();
@@ -209,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void openAddMemberPage() {
         mCurrentFragment = new AddAMemberFragment();
         getFragmentManager().beginTransaction().addToBackStack("AddAMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
-        mToolbar.setTitle("Add new member");
+        mToolbar.setTitle("Add Member");
     }
 
     public void openAddBookPage() {

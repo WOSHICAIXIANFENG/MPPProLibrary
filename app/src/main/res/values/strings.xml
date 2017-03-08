@@ -72,6 +72,7 @@
     <string name="str_tip_not_found_book">No book found by this isbn</string>
     <string name="str_tip_book_un_available">There is no copy left for this book</string>
 
+    <string name="str_tip_checkout_success">Checkout book successfully!</string>
 
 
 </resources>
