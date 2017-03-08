@@ -14,7 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.mpp.project.library.AppConfig;
 import com.mpp.project.library.R;
+import com.mpp.project.library.util.SPUtil;
+
+import java.util.Set;
+
+import static com.mpp.project.library.R.id.nav_checkout;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, INavigate {
     private Toolbar mToolbar;
@@ -46,6 +52,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        // Get permission from SP
+        initSelectedItemByPermit();
+    }
+
+    private void initSelectedItemByPermit() {
+        Set<String> permits = SPUtil.getStringSetPreferences(this, AppConfig.KEY_SP_PERMISSION_LIST);
+        if (permits != null) {
+            if (permits.contains(AppConfig.PERMISSION_CHECKOUT)) {
+                mNavigationView.setCheckedItem(R.id.nav_checkout);
+            } else if (permits.contains(AppConfig.PERMISSION_ADD_BOOK)) {
+                mNavigationView.setCheckedItem(R.id.nav_addBook);
+            } else if (permits.contains(AppConfig.PERMISSION_ADD_MEMBER)) {
+                mNavigationView.setCheckedItem(R.id.nav_editMember);
+            }
+        }
     }
 
     @Override
@@ -103,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_checkout) {
+        if (id == nav_checkout) {
             // Handle the check out action
             // use check out fragment to replace
             mCurrentFragment = new CheckoutFragment();

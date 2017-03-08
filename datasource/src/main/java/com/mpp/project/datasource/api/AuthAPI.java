@@ -8,6 +8,8 @@ import com.mpp.project.datasource.staff.Staff;
 
 public abstract interface AuthAPI {
     Staff login(Staff staff);
+
     String changePasswd(Staff staff, String newPasswd);
+
     String logout();
 }

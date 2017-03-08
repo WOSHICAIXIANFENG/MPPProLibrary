@@ -28,7 +28,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.mpp.project.library.AppConfig;
 import com.mpp.project.library.R;
+import com.mpp.project.library.presenter.LoginPresenter;
+import com.mpp.project.library.util.SPUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,10 +66,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
 //    private View mLoginFormView;
 
+    private LoginPresenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        boolean hasLogin = SPUtil.getBooleanPreferences(this, AppConfig.KEY_SP_HAS_LOGIN);
+        if (hasLogin) {
+            enterIntoHomePage();
+        }
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -93,6 +104,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 //        mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        mPresenter = new LoginPresenter(this);
     }
 
     private void populateAutoComplete() {
@@ -309,26 +322,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+            return mPresenter.login(mEmail, mPassword);
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-
-
-
-            return true;
+//            try {
+//                // Simulate network access.
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                return false;
+//            }
+//
+//            for (String credential : DUMMY_CREDENTIALS) {
+//                String[] pieces = credential.split(":");
+//                if (pieces[0].equals(mEmail)) {
+//                    // Account exists, return true if the password matches.
+//                    return pieces[1].equals(mPassword);
+//                }
+//            }
+//
+//            // TODO: register the new account here.
+//
+//
+//
+//            return true;
         }
 
         @Override
