@@ -5,5 +5,6 @@ package com.mpp.project.library.business;
  */
 
 public interface IPermit {
-    void login();
+    // do my work for permit
+    void doMyWork();
 }
