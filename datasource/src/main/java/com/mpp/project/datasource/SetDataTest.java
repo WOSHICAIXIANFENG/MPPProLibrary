@@ -97,14 +97,11 @@ public class SetDataTest {
         defaultBookAPI.addBook(cctv3Entity3);
 
 
-        String memStr1 = "{\"memberID\":\"1890\",\"phone\":\"641-12345\",\"address\":\"1000 N st, Faired, IA USA\",\"records\":[{\"isbn\":\"223460\",\"bookID\":\"6238\",\"checkOutDay\":\"2017-2-1\",\"dueDay\":\"2017-2-8\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223461\",\"bookID\":\"7238\",\"checkOutDay\":\"2017-2-2\",\"dueDay\":\"2017-2-9\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223462\",\"bookID\":\"8238\",\"checkOutDay\":\"2017-2-3\",\"dueDay\":\"2017-2-10\",\"laterDays\":0,\"fine\":0}]}";
-        String memStr2 = "{\"memberID\":\"1891\",\"phone\":\"641-12345\",\"address\":\"1000 N st, Faired, IA USA\",\"records\":[{\"isbn\":\"223460\",\"bookID\":\"6237\",\"checkOutDay\":\"2017-2-1\",\"dueDay\":\"2017-2-8\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223461\",\"bookID\":\"7237\",\"checkOutDay\":\"2017-2-2\",\"dueDay\":\"2017-2-9\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223462\",\"bookID\":\"8237\",\"checkOutDay\":\"2017-2-3\",\"dueDay\":\"2017-2-10\",\"laterDays\":0,\"fine\":0}]}";
-        String memStr3 = "{\"memberID\":\"1892\",\"phone\":\"641-12345\",\"address\":\"1000 N st, Faired, IA USA\",\"records\":[{\"isbn\":\"223458\",\"bookID\":\"4237\",\"checkOutDay\":\"2017-2-1\",\"dueDay\":\"2017-2-8\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223456\",\"bookID\":\"2237\",\"checkOutDay\":\"2017-2-2\",\"dueDay\":\"2017-2-9\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223459\",\"bookID\":\"5236\",\"checkOutDay\":\"2017-2-3\",\"dueDay\":\"2017-2-10\",\"laterDays\":0,\"fine\":0}]}";
+        String memStr1 = "{\"memberID\":\"3891\",\"firstName\":\"Leyou\",\"lastName\":\"Hong\",\"phone\":\"641-12345\",\"street\":\"1000 N st\",\"zip\":\"52556\",\"city\":\"Fairfield\",\"state\":\"IA\",\"records\":[{\"isbn\":\"223458\",\"bookID\":\"4237\",\"checkOutDay\":\"2017-2-1\",\"dueDay\":\"2017-2-8\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223456\",\"bookID\":\"2237\",\"checkOutDay\":\"2017-2-2\",\"dueDay\":\"2017-2-9\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223459\",\"bookID\":\"5236\",\"checkOutDay\":\"2017-2-3\",\"dueDay\":\"2017-2-10\",\"laterDays\":0,\"fine\":0}]}";
+        String memStr2 = "{\"memberID\":\"3892\",\"firstName\":\"Yangyang\",\"lastName\":\"Li\",\"phone\":\"641-12345\",\"street\":\"1000 N st\",\"zip\":\"52556\",\"city\":\"Fairfield\",\"state\":\"IA\",\"records\":[{\"isbn\":\"223460\",\"bookID\":\"6237\",\"checkOutDay\":\"2017-2-1\",\"dueDay\":\"2017-2-8\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223461\",\"bookID\":\"7237\",\"checkOutDay\":\"2017-2-2\",\"dueDay\":\"2017-2-9\",\"laterDays\":0,\"fine\":0},{\"isbn\":\"223462\",\"bookID\":\"8237\",\"checkOutDay\":\"2017-2-3\",\"dueDay\":\"2017-2-10\",\"laterDays\":0,\"fine\":0}]}";
         MemberEntity memberEntity1 = new Gson().fromJson(memStr1, MemberEntity.class);
         MemberEntity memberEntity2 = new Gson().fromJson(memStr2, MemberEntity.class);
-        MemberEntity memberEntity3 = new Gson().fromJson(memStr3, MemberEntity.class);
         defaultCheckOutAPI.addMember(memberEntity1);
         defaultCheckOutAPI.addMember(memberEntity2);
-        defaultCheckOutAPI.addMember(memberEntity3);
     }
 }
