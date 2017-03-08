@@ -9,6 +9,8 @@
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
+
+    <string name="error_login_fail">UserName not exists or password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
@@ -37,6 +39,7 @@
     <string name="action_add_author_short">Add Author</string>
 
     <!--- add member form labels -->
+    <string name="str_member_id">Member ID:</string>
     <string name="str_member_firstname">FirstName:</string>
     <string name="str_member_lastname">FirstName:</string>
     <string name="str_member_phone">Phone:</string>

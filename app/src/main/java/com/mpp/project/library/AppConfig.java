@@ -5,9 +5,12 @@ package com.mpp.project.library;
  */
 
 public class AppConfig {
+    public static final String DB_NAME = "Library_database";
+
     public static final String SHAREDPREFERENCE_NAME = "mpp_project";
     public static final String KEY_SP_PERMISSION_LIST = "permission_list";
     public static final String KEY_SP_HAS_LOGIN = "hasLogin";
+    public static final String KEY_SP_HAS_INITIAL = "hasInitialData";
 
     // permission list
     public static final String PERMISSION_CHECKOUT = "PERMIT_CHECKOUT";
@@ -18,4 +21,9 @@ public class AppConfig {
     public static final String PERMISSION_HUMAN_MANAGER = "PERMIT_MANAGER_STAFF";
     public static final String PERMISSION_ALL = "PERMIT_ALL";
 
+    // question's requirments
+    //Authorization levels are LIBRARIAN, ADMIN, and BOTH
+    public static final String PERMISSION_LIBRARIAN = "PERMIT_LIBRARIAN";
+    public static final String PERMISSION_ADMIN = "PERMIT_ADMIN";
+    public static final String PERMISSION_BOTH = "PERMIT_BOTH";
 }

@@ -60,12 +60,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initSelectedItemByPermit() {
         Set<String> permits = SPUtil.getStringSetPreferences(this, AppConfig.KEY_SP_PERMISSION_LIST);
         if (permits != null) {
-            if (permits.contains(AppConfig.PERMISSION_CHECKOUT)) {
+            if (permits.contains(AppConfig.PERMISSION_LIBRARIAN) || permits.contains(AppConfig.PERMISSION_BOTH)) {
                 mNavigationView.setCheckedItem(R.id.nav_checkout);
-            } else if (permits.contains(AppConfig.PERMISSION_ADD_BOOK)) {
+                openCheckOutPage();
+            } else if (permits.contains(AppConfig.PERMISSION_ADMIN)) {
                 mNavigationView.setCheckedItem(R.id.nav_addBook);
-            } else if (permits.contains(AppConfig.PERMISSION_ADD_MEMBER)) {
-                mNavigationView.setCheckedItem(R.id.nav_editMember);
+                openAddBookPage();
             }
         }
     }
@@ -127,20 +127,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == nav_checkout) {
             // Handle the check out action
-            // use check out fragment to replace
-            mCurrentFragment = new CheckoutFragment();
-            getFragmentManager().beginTransaction().addToBackStack("CheckoutFragment").replace(R.id.frame_content, mCurrentFragment).commit();
-            mToolbar.setTitle("Check Out");
+            openCheckOutPage();
 
         } else if (id == R.id.nav_editMember) {
-            mCurrentFragment = new AddAMemberFragment();
-            getFragmentManager().beginTransaction().addToBackStack("AddAMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
-            mToolbar.setTitle("Add new member");
+            openAddMemberPage();
 
         } else if (id == R.id.nav_addBook) {
-            mCurrentFragment = new AddBookFragment();
-            getFragmentManager().beginTransaction().addToBackStack("AddBookFragment").replace(R.id.frame_content, mCurrentFragment).commit();
-            mToolbar.setTitle("Add New Book");
+            openAddBookPage();
 
         } else if (id == R.id.nav_addCopy) {
             // todo by
@@ -186,5 +179,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void closeAddAuthorPage() {
 
+    }
+
+    public void openCheckOutPage() {
+        // use check out fragment to replace
+        mCurrentFragment = new CheckoutFragment();
+        getFragmentManager().beginTransaction().addToBackStack("CheckoutFragment").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Check Out");
+    }
+
+    public void openAddMemberPage() {
+        mCurrentFragment = new AddAMemberFragment();
+        getFragmentManager().beginTransaction().addToBackStack("AddAMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Add new member");
+    }
+
+    public void openAddBookPage() {
+        mCurrentFragment = new AddBookFragment();
+        getFragmentManager().beginTransaction().addToBackStack("AddBookFragment").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Add New Book");
     }
 }
