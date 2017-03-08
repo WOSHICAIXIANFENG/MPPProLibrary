@@ -9,6 +9,23 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/et_memeberId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_member_id"
+            android:imeActionId="@+id/bt_add"
+            android:imeActionLabel="@string/action_add_member_short"
+            android:imeOptions="actionUnspecified"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
             android:id="@+id/et_firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,6 +69,7 @@
             android:imeActionLabel="@string/action_add_member_short"
             android:imeOptions="actionUnspecified"
             android:maxLines="1"
+            android:inputType="phone"
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>

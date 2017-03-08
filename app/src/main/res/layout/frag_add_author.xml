@@ -52,6 +52,7 @@
             android:imeActionLabel="@string/action_add_author_short"
             android:imeOptions="actionUnspecified"
             android:maxLines="1"
+            android:inputType="phone"
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
