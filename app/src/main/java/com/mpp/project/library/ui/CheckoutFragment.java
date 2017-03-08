@@ -1,11 +1,13 @@
 package com.mpp.project.library.ui;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.mpp.project.datasource.memberEntity.Record;
 import com.mpp.project.library.R;
+import com.mpp.project.library.bean.CheckoutBean;
 import com.mpp.project.library.presenter.CheckOutPresenter;
 
 import java.util.List;
@@ -25,8 +27,11 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
 
     @Bind(R.id.rv_checkout)
     RecyclerView mRVCheckOutRecords;
+    private RecordAdapter mAdapter;
+    private List<CheckoutBean> mBeans;
 
     private CheckOutPresenter mPresenter;
+
 
     @Override
     int getLayoutXml() {
@@ -38,6 +43,12 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
         super.initData();
 
         mPresenter = new CheckOutPresenter(this);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRVCheckOutRecords.setLayoutManager(linearLayoutManager);
+        mAdapter = new RecordAdapter(getActivity(), mBeans);
+        mRVCheckOutRecords.setAdapter(mAdapter);
     }
 
     @OnClick(R.id.bt_search)
@@ -50,12 +61,12 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
 
     @Override
     public void showFailMsg(int msgId) {
-
+        Toast.makeText(getActivity(), msgId, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showCheckoutRecord(List<Record> records) {
+    public void showCheckoutRecord(List<CheckoutBean> records) {
         // bind records with RV
-
+        mAdapter.updateDataSet(records);
     }
 }
