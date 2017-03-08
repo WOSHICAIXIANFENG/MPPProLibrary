@@ -1,6 +1,5 @@
 package com.mpp.project.library.ui;
 
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -8,7 +7,6 @@ import com.mpp.project.library.R;
 import com.mpp.project.library.presenter.MemberPresenter;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * Created by Samuel on 6/3/17.
@@ -39,9 +37,6 @@ public class AddAMemberFragment extends BaseFragment implements IMemberView {
     @Bind(R.id.et_zip)
     EditText mZipBox;
 
-    @Bind(R.id.bt_add)
-    Button mSaveBtn;
-
     MemberPresenter mPresenter;
 
     @Override
@@ -53,8 +48,7 @@ public class AddAMemberFragment extends BaseFragment implements IMemberView {
         mPresenter = new MemberPresenter(this);
     }
 
-    @OnClick(R.id.bt_add)
-    public void clickSaveBtn() {
+    public void doAddMemberLogic() {
         if(valideInputFields()) {
             // todo logic
             String memberId = mMemberIdBox.getText().toString();
@@ -92,8 +86,61 @@ public class AddAMemberFragment extends BaseFragment implements IMemberView {
     }
 
     @Override
-    public void showFailMsg(int msg) {
-        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+    public void showMsg(final int msg) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void clearInputData() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // Reset errors.
+                mMemberIdBox.setError(null);
+                mMemberIdBox.setText("");
+                mFirstNameBox.setError(null);
+                mFirstNameBox.setText("");
+                mLastNameBox.setError(null);
+                mLastNameBox.setText("");
+                mPhoneBox.setError(null);
+                mPhoneBox.setText("");
+                mCityBox.setError(null);
+                mCityBox.setText("");
+                mStreetBox.setError(null);
+                mStreetBox.setText("");
+                mStateBox.setError(null);
+                mStateBox.setText("");
+                mZipBox.setError(null);
+                mZipBox.setText("");
+
+                mMemberIdBox.requestFocus();
+            }
+        });
+    }
+
+    @Override
+    public void hideSaveBtn() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+    }
+
+    @Override
+    public void showSaveBtn() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
     }
 
 //    @Override

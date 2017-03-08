@@ -67,6 +67,7 @@
             android:imeActionLabel="@string/action_add_member_short"
             android:imeOptions="actionUnspecified"
             android:maxLines="1"
+            android:inputType="number"
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>

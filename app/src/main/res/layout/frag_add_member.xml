@@ -77,11 +77,4 @@
 
     <include layout="@layout/frag_address" />
 
-    <Button
-        android:id="@+id/bt_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_add_member"
-        android:layout_margin="15dp"
-        android:layout_marginTop="35dp" />
 </LinearLayout>

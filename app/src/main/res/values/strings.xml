@@ -42,7 +42,7 @@
     <!--- add member form labels -->
     <string name="str_member_id">Member ID:</string>
     <string name="str_member_firstname">FirstName:</string>
-    <string name="str_member_lastname">FirstName:</string>
+    <string name="str_member_lastname">LastName:</string>
     <string name="str_member_phone">Phone:</string>
 
     <string name="str_address_street">Street:</string>
@@ -73,6 +73,7 @@
     <string name="str_tip_book_un_available">There is no copy left for this book</string>
 
     <string name="str_tip_checkout_success">Checkout book successfully!</string>
+    <string name="str_tip_add_member_success">Add One Member Successfully!</string>
 
 
 </resources>

@@ -2,9 +2,7 @@ package com.mpp.project.library.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -36,14 +34,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -128,6 +126,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (mCurrentFragment instanceof CheckoutFragment) {
                     CheckoutFragment checkoutFragment = (CheckoutFragment) mCurrentFragment;
                     checkoutFragment.doCheckoutLogic();
+                }
+            } else if ("Save".equals(title)) {
+                if (mCurrentFragment instanceof AddAMemberFragment) {
+                    AddAMemberFragment addAMemberFragment = (AddAMemberFragment) mCurrentFragment;
+                    addAMemberFragment.doAddMemberLogic();
                 }
             }
             return true;
@@ -221,6 +224,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mCurrentFragment = new AddAMemberFragment();
         getFragmentManager().beginTransaction().addToBackStack("AddAMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
         mToolbar.setTitle("Add Member");
+
+        mDoneAction.setTitle("Save");
+        mDoneAction.setVisible(true);
     }
 
     public void openAddBookPage() {

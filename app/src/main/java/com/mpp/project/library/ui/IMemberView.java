@@ -5,7 +5,12 @@ package com.mpp.project.library.ui;
  */
 
 public interface IMemberView {
-    void showFailMsg(int msgId);
+    void showMsg(int msgId);
+
+    void clearInputData();
+
+    void hideSaveBtn();
+    void showSaveBtn();
 
 //    void showMemberDetails(MemberEntity memberEntity);
 }
