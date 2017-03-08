@@ -9,5 +9,6 @@ public class AdminPermitImp implements IPermit {
     @Override
     public void doMyWork() {
         // implement my logic to check out book for member
+
     }
 }

@@ -1,6 +1,9 @@
 package com.mpp.project.library.db.service;
 
+import com.mpp.project.library.db.entity.BookEntity;
 import com.mpp.project.library.db.entity.BookEntityDao;
+
+import java.util.List;
 
 /**
  * Created by Samuel on 8/3/17.
@@ -28,5 +31,11 @@ public class BookService {
         instance = null;
     }
 
+    public void addOneBook(BookEntity bookEntity) {
+        bookEntityDao.insert(bookEntity);
+    }
 
+    public List<BookEntity> getBookEntityList() {
+        return bookEntityDao.queryBuilder().list();
+    }
 }
