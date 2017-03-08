@@ -6,9 +6,10 @@ package com.mpp.project.library.entity;
  */
 
 public class BookEntity {
-    private String uuid;
+    private String bookid;
     private String name;
     private String id;
 
     private AuthorEntity authorEntity;
+
 }

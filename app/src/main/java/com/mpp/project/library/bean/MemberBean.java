@@ -5,4 +5,14 @@ package com.mpp.project.library.bean;
  */
 
 public class MemberBean {
+     //
+    private String mebID;
+    private String mebfname;
+    private String mebname;
+    private String street;
+    private String city;
+    private String state;
+    private int    zip;
+    private int    phoneNum;
+
 }
