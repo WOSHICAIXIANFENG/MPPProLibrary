@@ -10,6 +10,7 @@ import com.mpp.project.library.R;
 import com.mpp.project.library.bean.CheckoutBean;
 import com.mpp.project.library.presenter.CheckOutPresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -32,7 +33,6 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
 
     private CheckOutPresenter mPresenter;
 
-
     @Override
     int getLayoutXml() {
         return R.layout.frag_checkout;
@@ -41,32 +41,45 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
     @Override
     protected void initData() {
         super.initData();
-
         mPresenter = new CheckOutPresenter(this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRVCheckOutRecords.setLayoutManager(linearLayoutManager);
+
+        mBeans = new ArrayList<>();
+        mBeans.add(new CheckoutBean("Book Name1", "Book Name1", "2016-12-23"));
+        mBeans.add(new CheckoutBean("Book Name2", "Book Name2", "2016-12-03"));
+
         mAdapter = new RecordAdapter(getActivity(), mBeans);
         mRVCheckOutRecords.setAdapter(mAdapter);
     }
 
     @OnClick(R.id.bt_search)
     void onClickSearchBtn() {
-        // todo
         String memberId = mInputMemberId.getText().toString();
-
         mPresenter.searchCheckOutListById(memberId);
     }
 
     @Override
-    public void showFailMsg(int msgId) {
-        Toast.makeText(getActivity(), msgId, Toast.LENGTH_SHORT).show();
+    public void showFailMsg(final int msgId) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getActivity(), msgId, Toast.LENGTH_SHORT).show();
+                mAdapter.clearDataSet();
+            }
+        });
     }
 
     @Override
-    public void showCheckoutRecord(List<CheckoutBean> records) {
-        // bind records with RV
-        mAdapter.updateDataSet(records);
+    public void showCheckoutRecord(final List<CheckoutBean> records) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // bind records with RV
+                mAdapter.updateDataSet(records);
+            }
+        });
     }
 }

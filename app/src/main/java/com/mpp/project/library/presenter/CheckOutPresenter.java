@@ -22,24 +22,26 @@ public class CheckOutPresenter {
         this.iCheckoutView = context;
     }
 
-    public void searchCheckOutListById(String memberId) {
-        MemberEntity memberEntity = APIHelper.getInstance().getMemberRecord(memberId);
-        if (memberEntity != null) {
-            List<Record> recordList = memberEntity.getRecords();
+    public void searchCheckOutListById(final String memberId) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MemberEntity memberEntity = APIHelper.getInstance().getMemberRecord(memberId);
+                if (memberEntity != null) {
+                    List<Record> recordList = memberEntity.getRecords();
 
-            List<CheckoutBean> dataSet = new ArrayList<>();
-            for (Record record : recordList) {
-                BookEntity bookEntity = APIHelper.getInstance().getBookFromBookID(record.getBookID());
-                String bookTitle = bookEntity.getTitle();
-                dataSet.add(new CheckoutBean(record.getBookID(), bookTitle, record.getCheckOutDay()));
+                    List<CheckoutBean> dataSet = new ArrayList<>();
+                    for (Record record : recordList) {
+                        BookEntity bookEntity = APIHelper.getInstance().getBookFromBookID(record.getBookID());
+                        String bookTitle = bookEntity.getTitle();
+                        dataSet.add(new CheckoutBean(record.getBookID(), bookTitle, record.getCheckOutDay()));
+                    }
+
+                    iCheckoutView.showCheckoutRecord(dataSet);
+                } else {
+                    iCheckoutView.showFailMsg(R.string.str_tip_not_found_member);
+                }
             }
-
-            iCheckoutView.showCheckoutRecord(dataSet);
-        } else {
-            //
-            iCheckoutView.showFailMsg(R.string.action_add_author);
-        }
-
-        // // TODO: 8/3/17
+        }).start();
     }
 }

@@ -41,6 +41,11 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
+    public void clearDataSet() {
+        this.recordList.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(RecordAdapter.ViewHolder holder, int position) {
         if (recordList == null)
