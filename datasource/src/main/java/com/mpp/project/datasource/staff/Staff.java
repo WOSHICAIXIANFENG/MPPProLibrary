@@ -11,6 +11,11 @@ public class Staff {
     private String passwd;
     private List<String> permits;
 
+    public Staff(String staffID, String passwd) {
+        this.staffID = staffID;
+        this.passwd = passwd;
+    }
+
     public Staff(String staffID, String passwd, List<String> permits) {
         this.staffID = staffID;
         this.passwd = passwd;

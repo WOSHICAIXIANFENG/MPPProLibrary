@@ -14,7 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.mpp.project.library.AppConfig;
 import com.mpp.project.library.R;
+import com.mpp.project.library.util.SPUtil;
+
+import java.util.Set;
+
+import static com.mpp.project.library.R.id.nav_checkout;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, INavigate {
     private Toolbar mToolbar;
@@ -46,6 +52,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Get permission from SP
+        initSelectedItemByPermit();
+    }
+
+    private void initSelectedItemByPermit() {
+        Set<String> permits = SPUtil.getStringSetPreferences(this, AppConfig.KEY_SP_PERMISSION_LIST);
+        if (permits != null) {
+            if (permits.contains(AppConfig.PERMISSION_LIBRARIAN) || permits.contains(AppConfig.PERMISSION_BOTH)) {
+                mNavigationView.setCheckedItem(R.id.nav_checkout);
+                openCheckOutPage();
+            } else if (permits.contains(AppConfig.PERMISSION_ADMIN)) {
+                mNavigationView.setCheckedItem(R.id.nav_addBook);
+                openAddBookPage();
+            }
+        }
     }
 
     @Override
@@ -103,22 +130,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_checkout) {
+        if (id == nav_checkout) {
             // Handle the check out action
-            // use check out fragment to replace
-            mCurrentFragment = new CheckoutFragment();
-            getFragmentManager().beginTransaction().addToBackStack("CheckoutFragment").replace(R.id.frame_content, mCurrentFragment).commit();
-            mToolbar.setTitle("Check Out");
+            openCheckOutPage();
 
         } else if (id == R.id.nav_editMember) {
-            mCurrentFragment = new AddAMemberFragment();
-            getFragmentManager().beginTransaction().addToBackStack("AddAMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
-            mToolbar.setTitle("Add new member");
+            openAddMemberPage();
 
         } else if (id == R.id.nav_addBook) {
-            mCurrentFragment = new AddBookFragment();
-            getFragmentManager().beginTransaction().addToBackStack("AddBookFragment").replace(R.id.frame_content, mCurrentFragment).commit();
-            mToolbar.setTitle("Add New Book");
+            openAddBookPage();
 
         } else if (id == R.id.nav_addCopy) {
             // todo by
@@ -164,5 +184,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void closeAddAuthorPage() {
 
+    }
+
+    public void openCheckOutPage() {
+        // use check out fragment to replace
+        mCurrentFragment = new CheckoutFragment();
+        getFragmentManager().beginTransaction().addToBackStack("CheckoutFragment").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Check Out");
+    }
+
+    public void openAddMemberPage() {
+        mCurrentFragment = new AddAMemberFragment();
+        getFragmentManager().beginTransaction().addToBackStack("AddAMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Add new member");
+    }
+
+    public void openAddBookPage() {
+        mCurrentFragment = new AddBookFragment();
+        getFragmentManager().beginTransaction().addToBackStack("AddBookFragment").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Add New Book");
     }
 }

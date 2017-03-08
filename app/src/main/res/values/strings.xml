@@ -9,6 +9,8 @@
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
+
+    <string name="error_login_fail">UserName not exists or password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
@@ -37,6 +39,7 @@
     <string name="action_add_author_short">Add Author</string>
 
     <!--- add member form labels -->
+    <string name="str_member_id">Member ID:</string>
     <string name="str_member_firstname">FirstName:</string>
     <string name="str_member_lastname">FirstName:</string>
     <string name="str_member_phone">Phone:</string>
@@ -49,8 +52,9 @@
     <string name="str_book_title">Title:</string>
     <string name="str_book_isbn">ISBN:</string>
     <string name="str_book_available">Is available</string>
+    <string name="str_book_copy_num">Copy Numbers:</string>
     
-    <string name="str_book_rent_set">Set tenancy period:</string>
+    <string name="str_book_rent_set">Maximum checkout length:</string>
     <string name="str_book_rent_long">21 days</string>
     <string name="str_book_rent_short">7 days</string>
 
@@ -62,5 +66,8 @@
     <string name="str_author_credentials">Credentials:</string>
     <string name="str_author_shortbio">Short Bio:</string>
 
+
+    <!-- tips -->
+    <string name="str_tip_not_found_member">Can\'t found any member by this Id</string>
 
 </resources>
