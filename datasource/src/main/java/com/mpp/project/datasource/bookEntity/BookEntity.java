@@ -15,9 +15,10 @@ public class BookEntity implements Serializable {
     private String borrower;
     private List<Author> authors;
 
-    BookEntity(String title, String isbn, String copy,
+    public BookEntity(String title, String isbn, String copy,
              String availability, String keep_days, String bookID,
              String borrower, List<Author> authors) {
+
         this.title = title;
         this.isbn = isbn;
         this.copy = copy;

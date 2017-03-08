@@ -7,5 +7,7 @@ package com.mpp.project.library.ui;
 public interface IBookView {
     void showFailMsg(int msgId);
 
+    void showSuccessMsgOnPage(int msgId);
+
     // other interface
 }

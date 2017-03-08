@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.mpp.project.library.R;
 import com.mpp.project.library.bean.AuthorBean;
+import com.mpp.project.library.presenter.BookPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class AddBookFragment extends BaseFragment implements IBookView {
     @Bind(R.id.btn_add_book)
     Button mBtnAddBook;
 
+    private BookPresenter mPresenter;
     List<AuthorBean> authorBeanList;
 
     @Override
@@ -60,6 +62,8 @@ public class AddBookFragment extends BaseFragment implements IBookView {
 
         // default value
         mCopyNumBox.setText("1");
+
+        mPresenter = new BookPresenter(this);
     }
 
     @OnClick(R.id.btn_add_author)
@@ -95,6 +99,11 @@ public class AddBookFragment extends BaseFragment implements IBookView {
 
     @Override
     public void showFailMsg(int msgId) {
-        
+        Toast.makeText(getActivity(), msgId, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showSuccessMsgOnPage(int msgId) {
+        Toast.makeText(getActivity(), msgId, Toast.LENGTH_SHORT).show();
     }
 }

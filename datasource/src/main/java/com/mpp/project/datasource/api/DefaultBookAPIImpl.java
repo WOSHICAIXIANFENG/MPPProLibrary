@@ -46,7 +46,6 @@ public class DefaultBookAPIImpl implements BookAPI {
             reditHelper.SetSet(bookEntity.getIsbn(), bookEntity.getBookID());
             reditHelper.SetInfo("bookID", Integer.valueOf(reditHelper.GetInfo("bookID"))+1 + "");
         }
-
     }
 
     @Override
