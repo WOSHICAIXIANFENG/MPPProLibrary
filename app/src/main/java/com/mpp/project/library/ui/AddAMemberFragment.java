@@ -5,7 +5,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mpp.project.library.R;
-import com.mpp.project.library.db.entity.MemberEntity;
 import com.mpp.project.library.presenter.MemberPresenter;
 
 import butterknife.Bind;
@@ -97,9 +96,9 @@ public class AddAMemberFragment extends BaseFragment implements IMemberView {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void showMemberDetails(MemberEntity memberEntity) {
-        // show/update some widgets
-
-    }
+//    @Override
+//    public void showMemberDetails(MemberEntity memberEntity) {
+//        // show/update some widgets
+//
+//    }
 }
