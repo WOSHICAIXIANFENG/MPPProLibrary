@@ -1,5 +1,6 @@
 package com.mpp.project.library.ui;
 
+import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -17,6 +18,9 @@ public class CheckoutFragment extends BaseFragment {
     EditText mInputMemberId;
     @Bind(R.id.bt_search)
     Button mSearchBtn;
+
+    @Bind(R.id.rv_checkout)
+    RecyclerView mRVCheckOutRecords;
 
     @Override
     int getLayoutXml() {

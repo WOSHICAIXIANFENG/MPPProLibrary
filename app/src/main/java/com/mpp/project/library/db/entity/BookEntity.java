@@ -22,6 +22,9 @@ public class BookEntity {
     // for book's copy
     private boolean isCopy;
     private boolean copyNumber;// unique
+    private String authorIds;// author Ids or author fullnames
+
+
     public boolean getCopyNumber() {
         return this.copyNumber;
     }
@@ -76,10 +79,17 @@ public class BookEntity {
     public void setId(Long id) {
         this.id = id;
     }
-    @Generated(hash = 938545160)
+    public String getAuthorIds() {
+        return this.authorIds;
+    }
+    public void setAuthorIds(String authorIds) {
+        this.authorIds = authorIds;
+    }
+
+    @Generated(hash = 1838456367)
     public BookEntity(Long id, String bookID, String isbn, String title,
             boolean isAvailable, int rentDays, int copyNum, boolean isCopy,
-            boolean copyNumber) {
+            boolean copyNumber, String authorIds) {
         this.id = id;
         this.bookID = bookID;
         this.isbn = isbn;
@@ -89,6 +99,7 @@ public class BookEntity {
         this.copyNum = copyNum;
         this.isCopy = isCopy;
         this.copyNumber = copyNumber;
+        this.authorIds = authorIds;
     }
     @Generated(hash = 1373651409)
     public BookEntity() {

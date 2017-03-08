@@ -22,9 +22,11 @@ public class AuthorEntity {
     private String zip;
     private String city;
     private String state;
+
     public String getState() {
         return this.state;
     }
+
     public void setState(String state) {
         this.state = state;
     }

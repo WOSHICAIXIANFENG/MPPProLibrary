@@ -20,6 +20,7 @@ public class CheckOutEntity {
     // mm-dd-yyyy
     private String checkoutDate;
     private String dueDate;
+
     public String getDueDate() {
         return this.dueDate;
     }

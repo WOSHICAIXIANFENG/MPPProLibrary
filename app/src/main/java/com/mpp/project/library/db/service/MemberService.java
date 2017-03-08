@@ -43,4 +43,11 @@ public class MemberService {
         return null;
     }
 
+    public void editOneMember(String memberId, String city) {
+        MemberEntity memberEntity = getMemberById(memberId);
+        memberEntity.setCity("Change");
+        // todo
+        memberEntityDao.update(memberEntity);
+    }
+
 }

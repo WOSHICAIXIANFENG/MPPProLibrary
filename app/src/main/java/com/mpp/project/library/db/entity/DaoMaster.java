@@ -21,20 +21,20 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        BookEntityDao.createTable(db, ifNotExists);
-        MemberEntityDao.createTable(db, ifNotExists);
         AuthorEntityDao.createTable(db, ifNotExists);
-        StaffEntityDao.createTable(db, ifNotExists);
+        BookEntityDao.createTable(db, ifNotExists);
         CheckOutEntityDao.createTable(db, ifNotExists);
+        MemberEntityDao.createTable(db, ifNotExists);
+        StaffEntityDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        BookEntityDao.dropTable(db, ifExists);
-        MemberEntityDao.dropTable(db, ifExists);
         AuthorEntityDao.dropTable(db, ifExists);
-        StaffEntityDao.dropTable(db, ifExists);
+        BookEntityDao.dropTable(db, ifExists);
         CheckOutEntityDao.dropTable(db, ifExists);
+        MemberEntityDao.dropTable(db, ifExists);
+        StaffEntityDao.dropTable(db, ifExists);
     }
 
     /**
@@ -53,11 +53,11 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(BookEntityDao.class);
-        registerDaoClass(MemberEntityDao.class);
         registerDaoClass(AuthorEntityDao.class);
-        registerDaoClass(StaffEntityDao.class);
+        registerDaoClass(BookEntityDao.class);
         registerDaoClass(CheckOutEntityDao.class);
+        registerDaoClass(MemberEntityDao.class);
+        registerDaoClass(StaffEntityDao.class);
     }
 
     public DaoSession newSession() {

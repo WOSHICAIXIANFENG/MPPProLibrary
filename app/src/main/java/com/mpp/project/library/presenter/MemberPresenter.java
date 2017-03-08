@@ -45,4 +45,8 @@ public class MemberPresenter {
 
         return  memberEntity;
     }
+
+    public void udpateMember(String memberId, String firstName, String lastName, String phone, String street, String state, String city, String zip) {
+        mMemberService.editOneMember(memberId, city);
+    }
 }

@@ -1,5 +1,6 @@
 package com.mpp.project.library.db.service;
 
+import com.mpp.project.library.db.entity.AuthorEntityDao;
 import com.mpp.project.library.db.entity.BookEntity;
 import com.mpp.project.library.db.entity.BookEntityDao;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class BookService {
     private static BookService instance;
     private BookEntityDao bookEntityDao;
+    private AuthorEntityDao authorEntityDao;
 
     private BookService() {
         bookEntityDao = ServiceFactory.getInstance().daoSession.getBookEntityDao();
+        authorEntityDao = ServiceFactory.getInstance().daoSession.getAuthorEntityDao();
     }
 
     public synchronized static BookService getInstance() {
@@ -32,6 +35,10 @@ public class BookService {
     }
 
     public void addOneBook(BookEntity bookEntity) {
+        // step1: save author list first
+
+
+        // step2: save book entity late
         bookEntityDao.insert(bookEntity);
     }
 

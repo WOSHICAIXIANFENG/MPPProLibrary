@@ -31,6 +31,7 @@ public class BookEntityDao extends AbstractDao<BookEntity, Long> {
         public final static Property CopyNum = new Property(6, int.class, "copyNum", false, "COPY_NUM");
         public final static Property IsCopy = new Property(7, boolean.class, "isCopy", false, "IS_COPY");
         public final static Property CopyNumber = new Property(8, boolean.class, "copyNumber", false, "COPY_NUMBER");
+        public final static Property AuthorIds = new Property(9, String.class, "authorIds", false, "AUTHOR_IDS");
     };
 
 
@@ -54,7 +55,8 @@ public class BookEntityDao extends AbstractDao<BookEntity, Long> {
                 "\"RENT_DAYS\" INTEGER NOT NULL ," + // 5: rentDays
                 "\"COPY_NUM\" INTEGER NOT NULL ," + // 6: copyNum
                 "\"IS_COPY\" INTEGER NOT NULL ," + // 7: isCopy
-                "\"COPY_NUMBER\" INTEGER NOT NULL );"); // 8: copyNumber
+                "\"COPY_NUMBER\" INTEGER NOT NULL ," + // 8: copyNumber
+                "\"AUTHOR_IDS\" TEXT);"); // 9: authorIds
     }
 
     /** Drops the underlying database table. */
@@ -91,6 +93,11 @@ public class BookEntityDao extends AbstractDao<BookEntity, Long> {
         stmt.bindLong(7, entity.getCopyNum());
         stmt.bindLong(8, entity.getIsCopy() ? 1L: 0L);
         stmt.bindLong(9, entity.getCopyNumber() ? 1L: 0L);
+ 
+        String authorIds = entity.getAuthorIds();
+        if (authorIds != null) {
+            stmt.bindString(10, authorIds);
+        }
     }
 
     @Override
@@ -121,6 +128,11 @@ public class BookEntityDao extends AbstractDao<BookEntity, Long> {
         stmt.bindLong(7, entity.getCopyNum());
         stmt.bindLong(8, entity.getIsCopy() ? 1L: 0L);
         stmt.bindLong(9, entity.getCopyNumber() ? 1L: 0L);
+ 
+        String authorIds = entity.getAuthorIds();
+        if (authorIds != null) {
+            stmt.bindString(10, authorIds);
+        }
     }
 
     @Override
@@ -139,7 +151,8 @@ public class BookEntityDao extends AbstractDao<BookEntity, Long> {
             cursor.getInt(offset + 5), // rentDays
             cursor.getInt(offset + 6), // copyNum
             cursor.getShort(offset + 7) != 0, // isCopy
-            cursor.getShort(offset + 8) != 0 // copyNumber
+            cursor.getShort(offset + 8) != 0, // copyNumber
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // authorIds
         );
         return entity;
     }
@@ -155,6 +168,7 @@ public class BookEntityDao extends AbstractDao<BookEntity, Long> {
         entity.setCopyNum(cursor.getInt(offset + 6));
         entity.setIsCopy(cursor.getShort(offset + 7) != 0);
         entity.setCopyNumber(cursor.getShort(offset + 8) != 0);
+        entity.setAuthorIds(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
      }
     
     @Override
