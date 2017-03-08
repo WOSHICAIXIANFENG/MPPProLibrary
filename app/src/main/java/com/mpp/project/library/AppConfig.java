@@ -16,4 +16,6 @@ public class AppConfig {
     public static final String PERMISSION_ADD_BOOK = "PERMIT_ADD_BOOK";
     public static final String PERMISSION_ADD_COPY_BOOK = "PERMIT_ADD_COPY";
     public static final String PERMISSION_HUMAN_MANAGER = "PERMIT_MANAGER_STAFF";
+    public static final String PERMISSION_ALL = "PERMIT_ALL";
+
 }
