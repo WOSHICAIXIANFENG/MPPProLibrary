@@ -14,6 +14,7 @@
             android:id="@+id/et_memberId"
             android:layout_margin="15dp"
             android:layout_width="200dp"
+            android:singleLine="true"
             android:layout_height="wrap_content"
             android:hint="@string/txt_input_member_id_hint" />
 
@@ -50,6 +51,7 @@
                 android:id="@+id/et_book_isbn"
                 android:layout_margin="15dp"
                 android:layout_width="200dp"
+                android:singleLine="true"
                 android:layout_height="wrap_content"
                 android:hint="@string/txt_input_book_isbn" />
 

@@ -7,9 +7,14 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Check out" />
         <item
+            android:id="@+id/nav_addMember"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Add Member" />
+
+        <item
             android:id="@+id/nav_editMember"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Add/Edit Member" />
+            android:title="Edit Member" />
         <item
             android:id="@+id/nav_addBook"
             android:icon="@drawable/ic_menu_slideshow"

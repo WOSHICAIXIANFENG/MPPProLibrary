@@ -34,6 +34,31 @@ public class MemberPresenter {
         }).start();
     }
 
+    public void editOneMember(final MemberEntity memberEntity, final String memberId, final String firstName, final String lastName, final String phone,
+                             final String street, final String state, final String city, final String zip) {
+        if (memberEntity == null)
+            return;
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                memberEntity.setMemberID(memberId);
+                memberEntity.setFirstName(firstName);
+                memberEntity.setLastName(lastName);
+                memberEntity.setPhone(phone);
+                memberEntity.setStreet(street);
+                memberEntity.setState(state);
+                memberEntity.setCity(city);
+                memberEntity.setZip(zip);
+
+                APIHelper.getInstance().editMember(memberEntity);
+                mMemberView.showMsg(R.string.str_tip_edit_member_success);
+                mMemberView.showEditBtnFromSave();
+            }
+        }).start();
+    }
+
     public MemberEntity getMemberById(String memberId) {
         return APIHelper.getInstance().getMemberRecord(memberId);
     }
@@ -42,4 +67,22 @@ public class MemberPresenter {
 //        APIHelper.getInstance().
 //        mMemberService.editOneMember(memberId, city);
 //    }
+
+
+    public void searchMemberById(final String memberId) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MemberEntity memberEntity = APIHelper.getInstance().getMemberRecord(memberId);
+                if (memberEntity != null) {
+                    mMemberView.showMemberDetails(memberEntity);
+                    mMemberView.showEditSaveBtn();
+                } else {
+                    mMemberView.showMsg(R.string.str_tip_not_found_member);
+                    mMemberView.clearInputData();
+                    mMemberView.hideEditSaveBtn();
+                }
+            }
+        }).start();
+    }
 }

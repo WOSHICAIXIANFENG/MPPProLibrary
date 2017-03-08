@@ -3,6 +3,7 @@ package com.mpp.project.library.ui;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.mpp.project.datasource.memberEntity.MemberEntity;
 import com.mpp.project.library.R;
 import com.mpp.project.library.presenter.MemberPresenter;
 
@@ -124,23 +125,23 @@ public class AddAMemberFragment extends BaseFragment implements IMemberView {
     }
 
     @Override
-    public void hideSaveBtn() {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+    public void hideEditSaveBtn() {
 
-            }
-        });
     }
 
     @Override
-    public void showSaveBtn() {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+    public void showEditSaveBtn() {
 
-            }
-        });
+    }
+
+    @Override
+    public void showEditBtnFromSave() {
+
+    }
+
+    @Override
+    public void showMemberDetails(MemberEntity memberEntity) {
+
     }
 
 //    @Override

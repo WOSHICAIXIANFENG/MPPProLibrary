@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             if ("DONE".equals(title)) {
 
+
             } else if ("CheckOut".equals(title)) {
                 // check out logic
                 if (mCurrentFragment instanceof CheckoutFragment) {
@@ -131,8 +132,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (mCurrentFragment instanceof AddAMemberFragment) {
                     AddAMemberFragment addAMemberFragment = (AddAMemberFragment) mCurrentFragment;
                     addAMemberFragment.doAddMemberLogic();
+                } else if (mCurrentFragment instanceof EditMemberFragment) {
+                    EditMemberFragment editMemberFragment = (EditMemberFragment) mCurrentFragment;
+                    editMemberFragment.doEditMemberLogic();
+                }
+            } else if ("Edit".equals(title)) {
+                if (mCurrentFragment instanceof EditMemberFragment) {
+                    EditMemberFragment editMemberFragment = (EditMemberFragment) mCurrentFragment;
+                    editMemberFragment.enableAllEditFields();
+                    showSaveBtnFromEdit();
                 }
             }
+
             return true;
         }
 
@@ -148,10 +159,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == nav_checkout) {
             // Handle the check out action
             openCheckOutPage();
-
-        } else if (id == R.id.nav_editMember) {
+        } else if (id == R.id.nav_addMember) {
             openAddMemberPage();
-
+        } else if (id == R.id.nav_editMember) {
+            openEditMemberPage();
         } else if (id == R.id.nav_addBook) {
             openAddBookPage();
 
@@ -202,6 +213,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public void showSaveBtnForAddBook() {
+
+    }
+
+    @Override
+    public void hideSaveBtnForAddBook() {
+
+    }
+
+    @Override
     public void showCheckOutBtn() {
         // show Check out btn on the top right area
         mDoneAction.setTitle("CheckOut");
@@ -210,6 +231,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void hideCheckOutBtn() {
+        mDoneAction.setVisible(false);
+    }
+
+    @Override
+    public void showEditBtn() {
+        mDoneAction.setTitle("Edit");
+        mDoneAction.setVisible(true);
+    }
+
+    @Override
+    public void showSaveBtnFromEdit() {
+        mDoneAction.setTitle("Save");
+        mDoneAction.setVisible(true);
+    }
+
+    @Override
+    public void showEditBtnFromSave() {
+        showEditBtn();
+    }
+
+    @Override
+    public void hideEditSaveBtn() {
         mDoneAction.setVisible(false);
     }
 
@@ -227,6 +270,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mDoneAction.setTitle("Save");
         mDoneAction.setVisible(true);
+    }
+
+    public void openEditMemberPage() {
+        mCurrentFragment = new EditMemberFragment();
+        getFragmentManager().beginTransaction().addToBackStack("EditMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Edit Member");
     }
 
     public void openAddBookPage() {
