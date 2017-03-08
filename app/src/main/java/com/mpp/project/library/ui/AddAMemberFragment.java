@@ -2,8 +2,10 @@ package com.mpp.project.library.ui;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mpp.project.library.R;
+import com.mpp.project.library.db.entity.MemberEntity;
 import com.mpp.project.library.presenter.MemberPresenter;
 
 import butterknife.Bind;
@@ -13,7 +15,7 @@ import butterknife.OnClick;
  * Created by Samuel on 6/3/17.
  */
 
-public class AddAMemberFragment extends BaseFragment {
+public class AddAMemberFragment extends BaseFragment implements IMemberView {
     @Bind(R.id.et_memeberId)
     EditText mMemberIdBox;
 
@@ -88,5 +90,16 @@ public class AddAMemberFragment extends BaseFragment {
         }
 
         return true;
+    }
+
+    @Override
+    public void showFailMsg(int msg) {
+        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMemberDetails(MemberEntity memberEntity) {
+        // show/update some widgets
+
     }
 }

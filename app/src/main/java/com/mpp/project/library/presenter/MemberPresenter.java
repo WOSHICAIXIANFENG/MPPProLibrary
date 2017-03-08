@@ -1,21 +1,21 @@
 package com.mpp.project.library.presenter;
 
-import android.app.Fragment;
-
+import com.mpp.project.library.R;
 import com.mpp.project.library.db.entity.MemberEntity;
 import com.mpp.project.library.db.service.MemberService;
 import com.mpp.project.library.db.service.ServiceFactory;
+import com.mpp.project.library.ui.IMemberView;
 
 /**
  * Created by Samuel on 7/3/17.
  */
 
 public class MemberPresenter {
-    private Fragment mContext;
+    private IMemberView mView;
     private MemberService mMemberService;
 
-    public MemberPresenter(Fragment context) {
-        this.mContext = context;
+    public MemberPresenter(IMemberView context) {
+        this.mView = context;
         this.mMemberService = ServiceFactory.getMemberService();
     }
 
@@ -38,8 +38,9 @@ public class MemberPresenter {
         MemberEntity memberEntity = mMemberService.getMemberById(memberId);
         if (memberEntity == null) {
             // not found memberId
+            mView.showFailMsg(R.string.str_tip_not_found_member);
         } else {
-
+            mView.showMemberDetails(memberEntity);
         }
 
         return  memberEntity;

@@ -66,4 +66,7 @@
     <string name="str_author_shortbio">Short Bio:</string>
 
 
+    <!-- tips -->
+    <string name="str_tip_not_found_member">Can\'t found any member by this Id</string>
+
 </resources>
