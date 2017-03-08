@@ -23,6 +23,18 @@ public class MemberEntity {
         return memberID;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void addRecord(Record record) {
+        records.add(record);
+    }
+
     @Override
     public String toString() {
         return "MemberEntity{" +

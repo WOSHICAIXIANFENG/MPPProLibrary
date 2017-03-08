@@ -5,7 +5,7 @@ import com.mpp.project.datasource.bookEntity.BookEntity;
 import java.util.List;
 
 /**
- * Created by Samuel on 6/3/17.
+ * Created by hongleyou on 6/3/17.
  */
 public abstract interface BookAPI {
 

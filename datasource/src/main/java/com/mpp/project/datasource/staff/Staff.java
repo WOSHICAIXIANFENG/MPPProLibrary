@@ -32,4 +32,13 @@ public class Staff {
     public void setPasswd(String passwd) {
         this.passwd = passwd;
     }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staffID='" + staffID + '\'' +
+                ", passwd='" + passwd + '\'' +
+                ", permits=" + permits +
+                '}';
+    }
 }
