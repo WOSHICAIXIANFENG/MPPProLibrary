@@ -35,6 +35,26 @@ public class MemberEntity {
         records.add(record);
     }
 
+    public void setMemberID(String memberID) {
+        this.memberID = memberID;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public List<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<Record> records) {
+        this.records = records;
+    }
+
     @Override
     public String toString() {
         return "MemberEntity{" +
