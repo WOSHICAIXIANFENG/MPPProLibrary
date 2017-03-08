@@ -21,6 +21,54 @@ public class Record {
         this.fine = fine;
     }
 
+    public double getFine() {
+        return fine;
+    }
+
+    public void setFine(double fine) {
+        this.fine = fine;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getBookID() {
+        return bookID;
+    }
+
+    public void setBookID(String bookID) {
+        this.bookID = bookID;
+    }
+
+    public String getCheckOutDay() {
+        return checkOutDay;
+    }
+
+    public void setCheckOutDay(String checkOutDay) {
+        this.checkOutDay = checkOutDay;
+    }
+
+    public String getDueDay() {
+        return dueDay;
+    }
+
+    public void setDueDay(String dueDay) {
+        this.dueDay = dueDay;
+    }
+
+    public int getLaterDays() {
+        return laterDays;
+    }
+
+    public void setLaterDays(int laterDays) {
+        this.laterDays = laterDays;
+    }
+
     @Override
     public String toString() {
         return "Record{" +

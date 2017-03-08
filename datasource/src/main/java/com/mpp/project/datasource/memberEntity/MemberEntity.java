@@ -17,6 +17,7 @@ public class MemberEntity {
     private String zip;
     private String city;
     private String state;
+
     private List<Record> records;
 
     public MemberEntity(String memberID, String firstName, String lastName, String phone,

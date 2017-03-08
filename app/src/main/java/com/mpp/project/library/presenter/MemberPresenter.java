@@ -18,7 +18,7 @@ public class MemberPresenter {
     public void addOneMember(String memberId, String firstName, String lastName, String phone, String street, String state, String city, String zip) {
 //        MemberEntity memberEntity = new MemberEntity();
 //        memberEntity.setMemberID(memberId);
-//        m
+//
 //        APIHelper.getInstance().addMember();
     }
 
