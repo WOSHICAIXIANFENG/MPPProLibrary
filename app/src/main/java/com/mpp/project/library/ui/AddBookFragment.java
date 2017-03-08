@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * Created by Samuel on 6/3/17.
  */
 
-public class AddBookFragment extends BaseFragment {
+public class AddBookFragment extends BaseFragment implements IBookView {
     @Bind(R.id.et_title)
     EditText mTitleBox;
 
@@ -90,7 +90,11 @@ public class AddBookFragment extends BaseFragment {
             return false;
         }
 
-
         return true;
+    }
+
+    @Override
+    public void showFailMsg(int msgId) {
+        
     }
 }
