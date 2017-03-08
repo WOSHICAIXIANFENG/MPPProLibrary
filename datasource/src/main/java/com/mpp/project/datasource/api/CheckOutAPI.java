@@ -14,6 +14,8 @@ public abstract interface CheckOutAPI {
 
     void addMember(MemberEntity memberEntity);
 
+    void editMember(MemberEntity memberEntity);
+
     void removeMember(String memberID);
 
     MemberEntity getMemberRecord(String memberID);

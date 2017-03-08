@@ -12,7 +12,6 @@ public class BookEntity implements Serializable {
     private String availability;
     private String keep_days;
     private String bookID;
-    private String borrower;
     private List<Author> authors;
 
     public BookEntity(String title, String isbn, String copy,
@@ -25,7 +24,6 @@ public class BookEntity implements Serializable {
         this.availability = availability;
         this.keep_days = keep_days;
         this.bookID = bookID;
-        this.borrower = borrower;
         this.authors = authors;
     }
 
@@ -46,7 +44,6 @@ public class BookEntity implements Serializable {
                 ", availability='" + availability + '\'' +
                 ", keep_days='" + keep_days + '\'' +
                 ", bookID='" + bookID + '\'' +
-                ", borrower='" + borrower + '\'' +
                 ", authors=" + authors +
                 '}';
     }

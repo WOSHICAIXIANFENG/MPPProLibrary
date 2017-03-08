@@ -105,6 +105,11 @@ public class APIHelper {
         defaultCheckOutAPI.addMember(memberEntity);
     }
 
+    public void editMember(MemberEntity memberEntity) {
+        DefaultCheckOutAPIImpl defaultCheckOutAPI = new DefaultCheckOutAPIImpl(reditHelper, jsonPaser);
+        defaultCheckOutAPI.editMember(memberEntity);
+    }
+
     public void removeMember(String memberID) {
         DefaultCheckOutAPIImpl defaultCheckOutAPI = new DefaultCheckOutAPIImpl(reditHelper, jsonPaser);
         defaultCheckOutAPI.removeMember(memberID);
