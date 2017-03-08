@@ -5,5 +5,5 @@ package com.mpp.project.library.business;
  */
 
 public interface IPermit {
-    void doMyJob();
+    void login();
 }

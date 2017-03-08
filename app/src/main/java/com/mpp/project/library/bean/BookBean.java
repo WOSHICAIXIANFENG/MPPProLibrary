@@ -5,7 +5,20 @@ package com.mpp.project.library.bean;
  */
 public class BookBean {
     //
-    private String ss;
+    private String title;
+    private String isbn;
+    private boolean copy;
+    private int     copyID;
+    private boolean availab;
+    private boolean sevenday;
+    private String aufname;
+    private String aulname;
+    private String addstreet;
+    private String addcity;
+    private String addstate;
+    private int addzip;
+    private int phoneNum;
+    private String credentials;
+    private String boi;
 
-    private String authorName;
 }
