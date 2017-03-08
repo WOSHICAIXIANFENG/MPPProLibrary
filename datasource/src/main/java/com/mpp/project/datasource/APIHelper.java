@@ -15,7 +15,7 @@ public class APIHelper {
     private static APIHelper instance;
 
     private APIHelper() {
-        reditHelper = new RedisHelper("172.17.3.69", 6379);
+        reditHelper = new RedisHelper("10.10.22.200", 6379);
         jsonPaser = new JsonPaser();
     }
 
