@@ -4,20 +4,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_checkout"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_local_library_black_24dp"
             android:title="Check out" />
         <item
             android:id="@+id/nav_addMember"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_account_box_black_24dp"
             android:title="Add Member" />
 
         <item
             android:id="@+id/nav_editMember"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_assignment_ind_black_24dp"
             android:title="Edit Member" />
         <item
             android:id="@+id/nav_addBook"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_book_black_24dp"
             android:title="Add Book" />
         <item
             android:id="@+id/nav_addCopy"
@@ -33,7 +33,7 @@
                 android:title="Settings" />
             <item
                 android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_exit_to_app_black_24dp"
                 android:title="Log out" />
         </menu>
     </item>
