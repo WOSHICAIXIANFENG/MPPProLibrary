@@ -1,12 +1,11 @@
 package com.mpp.project.library.ui;
 
-import android.widget.Button;
 import android.widget.EditText;
 
+import com.mpp.project.datasource.bookEntity.Author;
 import com.mpp.project.library.R;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * Created by Samuel on 7/3/17.
@@ -35,18 +34,34 @@ public class AddAuthorDialog extends BaseFragment {
     @Bind(R.id.et_zip)
     EditText mZipBox;
 
-    @Bind(R.id.bt_add)
-    Button mSaveBtn;
-
     @Override
     int getLayoutXml() {
         return R.layout.frag_add_author;
     }
 
-    @OnClick(R.id.bt_add)
-    public void clickSaveBtn() {
-        if(valideInputFields()) {
-            // todo logic
+    @Override
+    protected void initData() {
+
+    }
+
+    public void doAddAuthorLogic() {
+        if (valideInputFields()) {
+            String firstName = mFirstNameBox.getText().toString();
+            String lastName = mLastNameBox.getText().toString();
+            String phone = mPhoneBox.getText().toString();
+            String credentials = mCredentialBox.getText().toString();
+            String shortbio = mShortBioBox.getText().toString();
+
+            String street = mStreetBox.getText().toString();
+            String city = mCityBox.getText().toString();
+            String state = mStateBox.getText().toString();
+            String zip = mZipBox.getText().toString();
+
+            String address = street + "," + state + "," + city + "," + zip;
+            Author author = new Author(firstName, lastName, address, phone, credentials, shortbio);
+
+            INavigate iNavigate = (INavigate) getActivity();
+            iNavigate.addAuthorDone(author);
         }
     }
 

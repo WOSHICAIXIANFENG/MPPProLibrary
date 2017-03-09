@@ -67,7 +67,7 @@ public class AddBookFragment extends BaseFragment implements IBookView {
         mRVAuthorList.setLayoutManager(linearLayoutManager);
 
         authorList = new ArrayList<>();
-        authorList.add(new Author("firstName", "lastName", "address", "phone", "credentials", "shortbio"));
+//        authorList.add(new Author("firstName", "lastName", "address", "phone", "credentials", "shortbio"));
 //        mBeans.add(new CheckoutBean("Book Name1", "Book Name1", "2016-12-23"));
 //        mBeans.add(new CheckoutBean("Book Name2", "Book Name2", "2016-12-03"));
 
@@ -136,7 +136,6 @@ public class AddBookFragment extends BaseFragment implements IBookView {
         });
     }
 
-
     public void doAddBookLogic() {
         if(valideInputFields()) {
             if (authorList.isEmpty()) {
@@ -158,6 +157,13 @@ public class AddBookFragment extends BaseFragment implements IBookView {
             String days = mRentShort.isChecked() ? "7" : "21";
 
             mPresenter.addOneBook(title, isbn, copy, available, days, bookId, authorList);
+        }
+    }
+
+    public void doAddOneAuthorLogic(Author author) {
+        if (authorList != null) {
+            authorList.add(author);
+            mAdapter.updateDataSet(authorList);
         }
     }
 }

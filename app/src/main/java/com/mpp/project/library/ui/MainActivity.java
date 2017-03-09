@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.mpp.project.datasource.bookEntity.Author;
 import com.mpp.project.library.AppConfig;
 import com.mpp.project.library.R;
 import com.mpp.project.library.util.SPUtil;
@@ -138,7 +139,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else if (mCurrentFragment instanceof AddBookFragment) {
                     AddBookFragment addBookFragment = (AddBookFragment) mCurrentFragment;
                     addBookFragment.doAddBookLogic();
+                } else if (mCurrentFragment instanceof AddAuthorDialog) {
+                    AddAuthorDialog addAuthorDialog = (AddAuthorDialog) mCurrentFragment;
+                    addAuthorDialog.doAddAuthorLogic();
                 }
+
             } else if ("Edit".equals(title)) {
                 if (mCurrentFragment instanceof EditMemberFragment) {
                     EditMemberFragment editMemberFragment = (EditMemberFragment) mCurrentFragment;
@@ -257,6 +262,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void hideEditSaveBtn() {
         mDoneAction.setVisible(false);
+    }
+
+    @Override
+    public void addAuthorDone(Author author) {
+        if (mCurrentFragment instanceof AddAuthorDialog) {
+            getFragmentManager().popBackStackImmediate();
+
+            mCurrentFragment = getFragmentManager().findFragmentById(R.id.frame_content);
+            mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+            //mDoneAction.setVisible(false);
+
+            if (mCurrentFragment instanceof AddBookFragment) {
+                AddBookFragment addBookFragment = (AddBookFragment) mCurrentFragment;
+                addBookFragment.doAddOneAuthorLogic(author);
+            }
+        }
     }
 
     public void openCheckOutPage() {

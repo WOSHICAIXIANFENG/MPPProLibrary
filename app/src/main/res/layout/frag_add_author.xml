@@ -1,102 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/et_firstname"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/str_author_firstname"
-            android:imeActionId="@+id/bt_add"
-            android:imeActionLabel="@string/action_add_author_short"
-            android:imeOptions="actionUnspecified"
-            android:maxLines="1"
-            android:singleLine="true" />
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/et_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/str_author_firstname"
+                android:imeActionId="@+id/bt_add"
+                android:imeActionLabel="@string/action_add_author_short"
+                android:imeOptions="actionUnspecified"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/et_lastname"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/str_author_lastname"
-            android:imeActionId="@+id/bt_add"
-            android:imeActionLabel="@string/action_add_author_short"
-            android:imeOptions="actionUnspecified"
-            android:maxLines="1"
-            android:singleLine="true" />
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/et_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/str_author_lastname"
+                android:imeActionId="@+id/bt_add"
+                android:imeActionLabel="@string/action_add_author_short"
+                android:imeOptions="actionUnspecified"
+                android:maxLines="1"
+                android:singleLine="true" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/et_phone"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/str_author_phone"
-            android:imeActionId="@+id/bt_add"
-            android:imeActionLabel="@string/action_add_author_short"
-            android:imeOptions="actionUnspecified"
-            android:maxLines="1"
-            android:inputType="phone"
-            android:singleLine="true" />
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/str_author_phone"
+                android:imeActionId="@+id/bt_add"
+                android:imeActionLabel="@string/action_add_author_short"
+                android:imeOptions="actionUnspecified"
+                android:maxLines="1"
+                android:inputType="phone"
+                android:singleLine="true" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/et_credentials"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="@string/str_author_credentials"
-            android:imeActionId="@+id/bt_add"
-            android:imeActionLabel="@string/action_add_author_short"
-            android:imeOptions="actionUnspecified"
-            android:singleLine="true" />
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/et_credentials"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="@string/str_author_credentials"
+                android:imeActionId="@+id/bt_add"
+                android:imeActionLabel="@string/action_add_author_short"
+                android:imeOptions="actionUnspecified"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/et_shortbio"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="@string/str_author_shortbio"
-            android:imeActionId="@+id/bt_add"
-            android:imeActionLabel="@string/action_add_author_short"
-            android:imeOptions="actionUnspecified"
-            android:singleLine="true" />
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/et_shortbio"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="@string/str_author_shortbio"
+                android:imeActionId="@+id/bt_add"
+                android:imeActionLabel="@string/action_add_author_short"
+                android:imeOptions="actionUnspecified"
+                android:singleLine="true" />
 
-    <include layout="@layout/frag_address" />
+        </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/bt_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_add_author"
-        android:layout_margin="15dp"
-        android:layout_marginTop="35dp" />
-</LinearLayout>
+        <include layout="@layout/frag_address" />
+
+    </LinearLayout>
+</ScrollView>
