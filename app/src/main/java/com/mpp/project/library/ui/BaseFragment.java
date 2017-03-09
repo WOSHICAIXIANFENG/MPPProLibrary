@@ -1,6 +1,7 @@
 package com.mpp.project.library.ui;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment {
     abstract int getLayoutXml();
+
+    protected INavigate mNavigate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,5 +45,11 @@ public abstract class BaseFragment extends Fragment {
 
     protected void initData() {
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mNavigate = (INavigate) getActivity();
     }
 }

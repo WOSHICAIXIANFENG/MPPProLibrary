@@ -147,8 +147,7 @@ public class EditMemberFragment extends BaseFragment implements IMemberView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                INavigate iNavigate = (INavigate) getActivity();
-                iNavigate.hideEditSaveBtn();
+                mNavigate.hideEditSaveBtn();
             }
         });
     }
@@ -158,8 +157,7 @@ public class EditMemberFragment extends BaseFragment implements IMemberView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                INavigate iNavigate = (INavigate) getActivity();
-                iNavigate.showEditBtn();
+                mNavigate.showEditBtn();
             }
         });
     }
@@ -169,8 +167,7 @@ public class EditMemberFragment extends BaseFragment implements IMemberView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                INavigate iNavigate = (INavigate) getActivity();
-                iNavigate.showEditBtnFromSave();
+                mNavigate.showEditBtnFromSave();
                 disableForAllEditFields();
             }
         });

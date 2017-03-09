@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by Samuel on 7/3/17.
  */
 
-public class MemberPresenter {
+public class MemberPresenter extends BasePresenter {
     private IMemberView mMemberView;
 
     public MemberPresenter(IMemberView context) {

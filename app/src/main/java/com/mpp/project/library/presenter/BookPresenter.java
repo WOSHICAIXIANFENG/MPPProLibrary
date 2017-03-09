@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Samuel on 8/3/17.
  */
 
-public class BookPresenter {
+public class BookPresenter extends BasePresenter {
     private IBookView iBookView;
 
     public BookPresenter(IBookView iBookView) {

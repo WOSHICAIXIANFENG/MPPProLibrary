@@ -14,7 +14,7 @@ import java.util.Set;
  * Controller
  * Created by yangyangli on 3/6/17.
  */
-public class LoginPresenter {
+public class LoginPresenter extends BasePresenter {
     private Context mContext;
 
     public LoginPresenter(Context context) {

@@ -60,8 +60,7 @@ public class AddAuthorDialog extends BaseFragment {
             String address = street + "," + state + "," + city + "," + zip;
             Author author = new Author(firstName, lastName, address, phone, credentials, shortbio);
 
-            INavigate iNavigate = (INavigate) getActivity();
-            iNavigate.addAuthorDone(author);
+            mNavigate.addAuthorDone(author);
         }
     }
 

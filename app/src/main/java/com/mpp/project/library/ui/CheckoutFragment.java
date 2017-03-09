@@ -182,8 +182,7 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                INavigate iNavigate = (INavigate) getActivity();
-                iNavigate.showCheckOutBtn();
+                mNavigate.showCheckOutBtn();
             }
         });
     }
@@ -193,8 +192,7 @@ public class CheckoutFragment extends BaseFragment implements ICheckoutView {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                INavigate iNavigate = (INavigate) getActivity();
-                iNavigate.hideCheckOutBtn();
+                mNavigate.hideCheckOutBtn();
             }
         });
     }

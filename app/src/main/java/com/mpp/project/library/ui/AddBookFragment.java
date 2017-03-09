@@ -79,8 +79,7 @@ public class AddBookFragment extends BaseFragment implements IBookView {
     @OnClick(R.id.btn_add_author)
     void clickAddAuthorBtn() {
         // show add author dialog
-        INavigate navigator = (INavigate) getActivity();
-        navigator.openAddAuthorPage();
+        mNavigate.openAddAuthorPage();
     }
 
     void clickAddBookBtn() {

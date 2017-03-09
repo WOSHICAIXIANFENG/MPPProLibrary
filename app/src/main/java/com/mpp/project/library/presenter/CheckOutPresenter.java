@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Samuel on 8/3/17.
  */
 
-public class CheckOutPresenter {
+public class CheckOutPresenter extends BasePresenter{
     private ICheckoutView iCheckoutView;
 
     public CheckOutPresenter(ICheckoutView context) {

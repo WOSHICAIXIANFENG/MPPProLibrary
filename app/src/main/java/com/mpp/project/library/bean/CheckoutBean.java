@@ -1,5 +1,7 @@
 package com.mpp.project.library.bean;
 
+import com.mpp.project.datasource.memberEntity.Record;
+
 /**
  * Created by Samuel on 8/3/17.
  */
@@ -7,12 +9,18 @@ package com.mpp.project.library.bean;
 public class CheckoutBean {
     private String bookId;
     private String bookTitle;
-    private String date;// yyyy-mm-dd
+    private String date;// yyyy-mm-dd --- checkout
 
     public CheckoutBean(String bookId, String bookTitle, String date) {
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.date = date;
+    }
+
+    public CheckoutBean(Record record) {
+        this.bookId = record.getBookID();
+        //this.bookTitle = record.get;
+        this.date = record.getCheckOutDay();
     }
 
     public String getBookId() {
