@@ -25,7 +25,7 @@
             android:title="Add Copy for Book" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Others">
         <menu>
             <item
                 android:id="@+id/nav_setting"

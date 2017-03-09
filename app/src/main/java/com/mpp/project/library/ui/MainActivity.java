@@ -91,6 +91,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!TextUtils.isEmpty(phone)) {
             mPhoneTV.setText(phone);
         }
+
+        Menu menu = mNavigationView.getMenu();
+        if (permits.contains(AppConfig.PERMISSION_LIBRARIAN)) {
+            menu.removeItem(R.id.nav_editMember);
+            menu.removeItem(R.id.nav_addBook);
+            menu.removeItem(R.id.nav_addCopy);
+            menu.removeItem(R.id.nav_addMember);
+        } else if (permits.contains(AppConfig.PERMISSION_ADMIN)) {
+            menu.removeItem(R.id.nav_checkout);
+        }
     }
 
     @Override
@@ -300,7 +310,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // use check out fragment to replace
         mCurrentFragment = new CheckoutFragment();
         getFragmentManager().beginTransaction().addToBackStack("CheckoutFragment").replace(R.id.frame_content, mCurrentFragment).commit();
-        mToolbar.setTitle("Check Out");
+        if (mToolbar != null)
+            mToolbar.setTitle("Check Out");
     }
 
     public void openAddMemberPage() {
@@ -323,8 +334,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getFragmentManager().beginTransaction().addToBackStack("AddBookFragment").replace(R.id.frame_content, mCurrentFragment).commit();
         mToolbar.setTitle("Add New Book");
 
-        mDoneAction.setTitle("Save");
-        mDoneAction.setVisible(true);
+        if (mDoneAction != null) {
+            mDoneAction.setTitle("Save");
+            mDoneAction.setVisible(true);
+        }
     }
 
     public void openAddCopyPage() {

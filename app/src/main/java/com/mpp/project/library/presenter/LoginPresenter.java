@@ -25,17 +25,25 @@ public class LoginPresenter {
         Staff staff = APIHelper.getInstance().login(userName, pwd);
         if (staff != null) {
             // login success
-            Set<String> permits = new HashSet<>(staff.getPermits());
-            SPUtil.setStringSetPreferences(mContext, AppConfig.KEY_SP_PERMISSION_LIST, permits);
-            SPUtil.setBooleanPreferences(mContext, AppConfig.KEY_SP_HAS_LOGIN, true);
-            // save firstName
-            SPUtil.setStringContentPreferences(mContext, AppConfig.KEY_SP_USERNAME, userName);
+            saveUserToken(userName);
+            savePermitsEncrypt(staff);
         } else {
             // login fail
             SPUtil.setBooleanPreferences(mContext, AppConfig.KEY_SP_HAS_LOGIN, false);
         }
 
         return staff != null;
+    }
+
+    private void saveUserToken(String userToken) {
+        // save firstName
+        SPUtil.setStringContentPreferences(mContext, AppConfig.KEY_SP_USERNAME, userToken);
+        SPUtil.setBooleanPreferences(mContext, AppConfig.KEY_SP_HAS_LOGIN, true);
+    }
+
+    private void savePermitsEncrypt(Staff staff) {
+        Set<String> permits = new HashSet<>(staff.getPermits());
+        SPUtil.setStringSetPreferences(mContext, AppConfig.KEY_SP_PERMISSION_LIST, permits);
     }
 
 //    public boolean login(String userName, String pwd) {
