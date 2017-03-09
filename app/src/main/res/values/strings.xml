@@ -75,5 +75,6 @@
     <string name="str_tip_checkout_success">Checkout book successfully!</string>
     <string name="str_tip_add_member_success">Add One Member Successfully!</string>
     <string name="str_tip_edit_member_success">Edit Successfully!</string>
-
+    <string name="str_tip_add_book_success">Add One Book Successfully!</string>
+    <string name="str_tip_add_author_success">Add One Author Successfully!</string>
 </resources>

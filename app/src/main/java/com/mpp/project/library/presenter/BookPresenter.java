@@ -19,15 +19,18 @@ public class BookPresenter {
         this.iBookView = iBookView;
     }
 
-    public void addOneBook(String title, String isbn, String copy,
-                           String availability, String keep_days, String bookID,
-                           String borrower, List<Author> authors) {
-        BookEntity bookEntity = new BookEntity(title, isbn, copy, availability, keep_days, bookID, borrower, authors );
-        APIHelper.getInstance().addBook(bookEntity);
-        // todo
+    public void addOneBook(final String title, final String isbn,final String copy,
+                           final String availability,final String keep_days, final String bookID,
+                           final List<Author> authors) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                BookEntity bookEntity = new BookEntity(title, isbn, copy, availability, keep_days, bookID, authors );
+                APIHelper.getInstance().addBook(bookEntity);
 
-        if (true) {
-            iBookView.showSuccessMsgOnPage(R.string.action_add_author);
-        }
+                iBookView.showMsg(R.string.str_tip_add_book_success);
+                iBookView.clearInputFields();
+            }
+        }).start();
     }
 }

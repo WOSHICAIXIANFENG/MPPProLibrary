@@ -1,5 +1,6 @@
 package com.mpp.project.library.ui;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -8,8 +9,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.mpp.project.datasource.bookEntity.Author;
 import com.mpp.project.library.R;
-import com.mpp.project.library.bean.AuthorBean;
 import com.mpp.project.library.presenter.BookPresenter;
 
 import java.util.ArrayList;
@@ -45,11 +46,10 @@ public class AddBookFragment extends BaseFragment implements IBookView {
     Button mBtnAddAuthor;
     @Bind(R.id.rv_authors)
     RecyclerView mRVAuthorList;
-    @Bind(R.id.btn_add_book)
-    Button mBtnAddBook;
+    AuthorAdapter mAdapter;
 
     private BookPresenter mPresenter;
-    List<AuthorBean> authorBeanList;
+    List<Author> authorList;
 
     @Override
     int getLayoutXml() {
@@ -58,12 +58,21 @@ public class AddBookFragment extends BaseFragment implements IBookView {
 
     @Override
     protected void initData() {
-        authorBeanList = new ArrayList<>();
-
-        // default value
         mCopyNumBox.setText("1");
 
         mPresenter = new BookPresenter(this);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRVAuthorList.setLayoutManager(linearLayoutManager);
+
+        authorList = new ArrayList<>();
+        authorList.add(new Author("firstName", "lastName", "address", "phone", "credentials", "shortbio"));
+//        mBeans.add(new CheckoutBean("Book Name1", "Book Name1", "2016-12-23"));
+//        mBeans.add(new CheckoutBean("Book Name2", "Book Name2", "2016-12-03"));
+
+        mAdapter = new AuthorAdapter(getActivity(), authorList);
+        mRVAuthorList.setAdapter(mAdapter);
     }
 
     @OnClick(R.id.btn_add_author)
@@ -73,7 +82,6 @@ public class AddBookFragment extends BaseFragment implements IBookView {
         navigator.openAddAuthorPage();
     }
 
-    @OnClick(R.id.btn_add_book)
     void clickAddBookBtn() {
         if(valideInputFields()) {
             // todo logic
@@ -89,7 +97,7 @@ public class AddBookFragment extends BaseFragment implements IBookView {
             return false;
         }
 
-        if (authorBeanList.size() == 0) {
+        if (authorList.size() == 0) {
             Toast.makeText(getActivity(), "Please add one author at least for this book", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -98,12 +106,58 @@ public class AddBookFragment extends BaseFragment implements IBookView {
     }
 
     @Override
-    public void showFailMsg(int msgId) {
-        Toast.makeText(getActivity(), msgId, Toast.LENGTH_SHORT).show();
+    public void showMsg(final int msgId) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getActivity(), msgId, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
-    public void showSuccessMsgOnPage(int msgId) {
-        Toast.makeText(getActivity(), msgId, Toast.LENGTH_SHORT).show();
+    public void clearInputFields() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTitleBox.setError(null);
+                mTitleBox.setText("");
+                mISBNBox.setError(null);
+                mISBNBox.setText("");
+
+                mCopyNumBox.setText("1");
+                mRentShort.setChecked(false);
+                mRentLong.setChecked(true);
+
+                // clear author list
+                mAdapter.clearDataSet();
+                mTitleBox.requestFocus();
+            }
+        });
+    }
+
+
+    public void doAddBookLogic() {
+        if(valideInputFields()) {
+            if (authorList.isEmpty()) {
+                Toast.makeText(getActivity(), "You have to set at least one author", Toast.LENGTH_SHORT).show();
+            }
+
+            String title = mTitleBox.getText().toString();
+            String isbn = mISBNBox.getText().toString();
+            String copy = System.currentTimeMillis() + "";
+            String bookId = System.currentTimeMillis() + "";
+
+            String available = "";
+            if (mIsAvailable.isChecked()) {
+                available += "Yes";
+            } else {
+                available += "No";
+            }
+
+            String days = mRentShort.isChecked() ? "7" : "21";
+
+            mPresenter.addOneBook(title, isbn, copy, available, days, bookId, authorList);
+        }
     }
 }

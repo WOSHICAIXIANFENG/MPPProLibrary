@@ -135,6 +135,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } else if (mCurrentFragment instanceof EditMemberFragment) {
                     EditMemberFragment editMemberFragment = (EditMemberFragment) mCurrentFragment;
                     editMemberFragment.doEditMemberLogic();
+                } else if (mCurrentFragment instanceof AddBookFragment) {
+                    AddBookFragment addBookFragment = (AddBookFragment) mCurrentFragment;
+                    addBookFragment.doAddBookLogic();
                 }
             } else if ("Edit".equals(title)) {
                 if (mCurrentFragment instanceof EditMemberFragment) {
@@ -282,5 +285,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mCurrentFragment = new AddBookFragment();
         getFragmentManager().beginTransaction().addToBackStack("AddBookFragment").replace(R.id.frame_content, mCurrentFragment).commit();
         mToolbar.setTitle("Add New Book");
+
+        mDoneAction.setTitle("Save");
+        mDoneAction.setVisible(true);
     }
 }

@@ -14,7 +14,7 @@ public class Author implements Serializable {
     private String credentials;
     private String short_bio;
 
-    Author(String first_name, String last_name, String address, String phone, String credentials, String short_bio) {
+    public Author(String first_name, String last_name, String address, String phone, String credentials, String short_bio) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.address = address;
