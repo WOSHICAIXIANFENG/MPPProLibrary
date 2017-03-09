@@ -10,7 +10,17 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
+You have to install Redis.
+1.You can open terminal and run the command "yum install redis" on Linux.
+You can open terminal and run the command "brew install redis" on Mac OS.
+You can google "how to run redis on Windows" to install and run.
+
+2.Config redis.
+1) Open terminal on your computer. Run "redis-server" to start redis server.
+2) Open another terminal on your computer. Run "redis-client" to start redis client.
+3) Run the command "CONFIG SET protected-mode on" redis-client terminal to close redis protected mode.
+4) Before you run app, you need to check the redis ip address and change it in APIHelper.
+
 Give examples
 ```
 
