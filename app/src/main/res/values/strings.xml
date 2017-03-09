@@ -31,6 +31,7 @@
     <string name="btn_add_author">Save Author</string>
     <string name="btn_add_author_label">Add</string>
     <string name="btn_add_book_label">Add This Book To Library</string>
+    <string name="btn_add_copy_book">Add One Copy</string>
 
     <string name="action_add_member">Add New Member</string>
     <string name="action_add_member_short">Add Member</string>
@@ -77,4 +78,9 @@
     <string name="str_tip_edit_member_success">Edit Successfully!</string>
     <string name="str_tip_add_book_success">Add One Book Successfully!</string>
     <string name="str_tip_add_author_success">Add One Author Successfully!</string>
+    <string name="str_tip_add_copy_success">Add One Copy Successfully!</string>
+
+    <string name="str_dialog_msg">Are you sure to logout ?</string>
+    <string name="str_dialog_ok_btn">OK</string>
+    <string name="str_dialog_cancel_btn">Cancel</string>
 </resources>

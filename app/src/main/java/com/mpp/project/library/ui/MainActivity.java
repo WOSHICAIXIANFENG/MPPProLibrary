@@ -1,22 +1,27 @@
 package com.mpp.project.library.ui;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.mpp.project.datasource.bookEntity.Author;
 import com.mpp.project.library.AppConfig;
 import com.mpp.project.library.R;
 import com.mpp.project.library.util.SPUtil;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static com.mpp.project.library.R.id.nav_checkout;
@@ -26,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Fragment mCurrentFragment;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
+
+    private TextView mUserNameTV;
+    private TextView mPhoneTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        View headerLayout = mNavigationView.inflateHeaderView(R.layout.nav_header_main);
+        mUserNameTV = (TextView) headerLayout.findViewById(R.id.tv_userName);
+        mPhoneTV = (TextView) headerLayout.findViewById(R.id.tv_userPhone);
     }
 
     @Override
@@ -71,6 +83,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mNavigationView.setCheckedItem(R.id.nav_addBook);
                 openAddBookPage();
             }
+        }
+
+        String userName = SPUtil.getStringContentPreferences(this, AppConfig.KEY_SP_USERNAME);
+        mUserNameTV.setText(userName);
+        String phone = SPUtil.getStringContentPreferences(this, AppConfig.KEY_SP_PHONE);
+        if (!TextUtils.isEmpty(phone)) {
+            mPhoneTV.setText(phone);
         }
     }
 
@@ -173,15 +192,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             openEditMemberPage();
         } else if (id == R.id.nav_addBook) {
             openAddBookPage();
-
         } else if (id == R.id.nav_addCopy) {
-            // todo by
-
+            openAddCopyPage();
         } else if (id == R.id.nav_logout) {
-            // todo by
-
+            showSimpleLogoutDialog();
         } else if (id == R.id.nav_setting) {
-
+            // todo later
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -309,5 +325,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mDoneAction.setTitle("Save");
         mDoneAction.setVisible(true);
+    }
+
+    public void openAddCopyPage() {
+        mCurrentFragment = new AddCopyFragment();
+        getFragmentManager().beginTransaction().addToBackStack("AddCopyFragment").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Add Copy");
+
+        mDoneAction.setVisible(false);
+    }
+
+    private void showSimpleLogoutDialog() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setMessage(R.string.str_dialog_msg);
+
+        //监听下方button点击事件
+        builder.setPositiveButton(R.string.str_dialog_ok_btn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                SPUtil.setBooleanPreferences(MainActivity.this, AppConfig.KEY_SP_HAS_LOGIN, false);
+                Set<String> permits = new HashSet<>();
+                SPUtil.setStringSetPreferences(MainActivity.this, AppConfig.KEY_SP_PERMISSION_LIST, permits);
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.str_dialog_cancel_btn, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        //设置对话框是可取消的
+        builder.setCancelable(true);
+        AlertDialog dialog=builder.create();
+        dialog.show();
     }
 }

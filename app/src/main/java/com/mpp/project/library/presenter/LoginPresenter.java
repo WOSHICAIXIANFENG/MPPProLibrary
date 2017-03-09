@@ -28,6 +28,8 @@ public class LoginPresenter {
             Set<String> permits = new HashSet<>(staff.getPermits());
             SPUtil.setStringSetPreferences(mContext, AppConfig.KEY_SP_PERMISSION_LIST, permits);
             SPUtil.setBooleanPreferences(mContext, AppConfig.KEY_SP_HAS_LOGIN, true);
+            // save firstName
+            SPUtil.setStringContentPreferences(mContext, AppConfig.KEY_SP_USERNAME, userName);
         } else {
             // login fail
             SPUtil.setBooleanPreferences(mContext, AppConfig.KEY_SP_HAS_LOGIN, false);

@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.mpp.project.datasource.bookEntity.Author;
+import com.mpp.project.datasource.bookEntity.BookEntity;
 import com.mpp.project.library.R;
 import com.mpp.project.library.presenter.BookPresenter;
 
@@ -136,6 +137,16 @@ public class AddBookFragment extends BaseFragment implements IBookView {
         });
     }
 
+    @Override
+    public void showBookDetails(BookEntity bookEntity) {
+        // nothing
+    }
+
+    @Override
+    public void clearBookDetails() {
+        // nothing
+    }
+
     public void doAddBookLogic() {
         if(valideInputFields()) {
             if (authorList.isEmpty()) {
@@ -144,7 +155,7 @@ public class AddBookFragment extends BaseFragment implements IBookView {
 
             String title = mTitleBox.getText().toString();
             String isbn = mISBNBox.getText().toString();
-            String copy = System.currentTimeMillis() + "";
+            String copyNum = mCopyNumBox.getText().toString();
             String bookId = System.currentTimeMillis() + "";
 
             String available = "";
@@ -155,8 +166,7 @@ public class AddBookFragment extends BaseFragment implements IBookView {
             }
 
             String days = mRentShort.isChecked() ? "7" : "21";
-
-            mPresenter.addOneBook(title, isbn, copy, available, days, bookId, authorList);
+            mPresenter.addOneBook(title, isbn, copyNum, available, days, bookId, authorList);
         }
     }
 

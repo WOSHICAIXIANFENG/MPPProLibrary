@@ -19,17 +19,52 @@ public class BookPresenter {
         this.iBookView = iBookView;
     }
 
-    public void addOneBook(final String title, final String isbn,final String copy,
+    public void addOneBook(final String title, final String isbn,final String copyNum,
                            final String availability,final String keep_days, final String bookID,
                            final List<Author> authors) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                BookEntity bookEntity = new BookEntity(title, isbn, copy, availability, keep_days, bookID, authors );
+                BookEntity bookEntity = new BookEntity(title, isbn, copyNum, availability, keep_days, bookID, authors );
                 APIHelper.getInstance().addBook(bookEntity);
-
                 iBookView.showMsg(R.string.str_tip_add_book_success);
                 iBookView.clearInputFields();
+            }
+        }).start();
+    }
+
+    public void searchBookByISBN(final String isbn) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<BookEntity> bookEntities = APIHelper.getInstance().getBooksFromISBN(isbn);
+                if (!bookEntities.isEmpty()) {
+                    iBookView.showBookDetails(bookEntities.get(0));
+                } else {
+                    iBookView.showMsg(R.string.str_tip_not_found_book);
+                    iBookView.clearBookDetails();
+                }
+            }
+        }).start();
+    }
+
+    public void addOneCopyForBook(final BookEntity bookEntity) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String copyNum = bookEntity.getCopy();
+                int numbers = 0;
+                try {
+                    numbers = Integer.parseInt(copyNum);
+                } catch (Exception e) {
+
+                }
+
+                bookEntity.setCopy((numbers + 1) + "");
+                APIHelper.getInstance().editBook(bookEntity);
+
+                iBookView.showMsg(R.string.str_tip_add_copy_success);
+                iBookView.showBookDetails(bookEntity);
             }
         }).start();
     }

@@ -12,6 +12,9 @@ public class AppConfig {
     public static final String KEY_SP_HAS_LOGIN = "hasLogin";
     public static final String KEY_SP_HAS_INITIAL = "hasInitialData";
 
+    public static final String KEY_SP_PHONE = "USER_PHONE";
+    public static final String KEY_SP_USERNAME = "USER_NAME";
+
     // permission list
     public static final String PERMISSION_CHECKOUT = "PERMIT_CHECKOUT";
 
