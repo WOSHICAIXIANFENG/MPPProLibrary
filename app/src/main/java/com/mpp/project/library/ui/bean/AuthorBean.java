@@ -1,4 +1,4 @@
-package com.mpp.project.library.bean;
+package com.mpp.project.library.ui.bean;
 
 /**
  * Created by Samuel on 7/3/17.

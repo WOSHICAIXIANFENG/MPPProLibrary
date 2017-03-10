@@ -1,4 +1,4 @@
-package com.mpp.project.library.ui;
+package com.mpp.project.library.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mpp.project.library.R;
-import com.mpp.project.library.bean.CheckoutBean;
+import com.mpp.project.library.ui.bean.CheckoutBean;
 
 import java.util.List;
 

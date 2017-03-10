@@ -13,6 +13,7 @@ import com.mpp.project.datasource.bookEntity.Author;
 import com.mpp.project.datasource.bookEntity.BookEntity;
 import com.mpp.project.library.R;
 import com.mpp.project.library.presenter.BookPresenter;
+import com.mpp.project.library.ui.adapter.AuthorAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

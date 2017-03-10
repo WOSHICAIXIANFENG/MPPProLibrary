@@ -5,7 +5,7 @@ import com.mpp.project.datasource.bookEntity.BookEntity;
 import com.mpp.project.datasource.memberEntity.MemberEntity;
 import com.mpp.project.datasource.memberEntity.Record;
 import com.mpp.project.library.R;
-import com.mpp.project.library.bean.CheckoutBean;
+import com.mpp.project.library.ui.bean.CheckoutBean;
 import com.mpp.project.library.ui.ICheckoutView;
 
 import java.util.ArrayList;

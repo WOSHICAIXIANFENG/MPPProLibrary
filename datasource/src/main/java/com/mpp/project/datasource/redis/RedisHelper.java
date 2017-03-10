@@ -31,7 +31,12 @@ public class RedisHelper {
     }
 
     public boolean HasKey(String key) {
-        return jedis.exists(key);
+        try {
+            return jedis.exists(key);
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return false;
+        }
     }
 
     public void RemoveInfo(String key) {

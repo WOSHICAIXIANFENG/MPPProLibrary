@@ -2,7 +2,7 @@ package com.mpp.project.library.ui;
 
 import com.mpp.project.datasource.bookEntity.BookEntity;
 import com.mpp.project.datasource.memberEntity.MemberEntity;
-import com.mpp.project.library.bean.CheckoutBean;
+import com.mpp.project.library.ui.bean.CheckoutBean;
 
 import java.util.List;
 

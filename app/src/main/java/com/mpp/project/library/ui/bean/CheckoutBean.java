@@ -1,4 +1,4 @@
-package com.mpp.project.library.bean;
+package com.mpp.project.library.ui.bean;
 
 import com.mpp.project.datasource.memberEntity.Record;
 

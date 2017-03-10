@@ -13,7 +13,8 @@ import com.mpp.project.datasource.bookEntity.Author;
 import com.mpp.project.datasource.bookEntity.BookEntity;
 import com.mpp.project.datasource.memberEntity.MemberEntity;
 import com.mpp.project.library.R;
-import com.mpp.project.library.bean.CheckoutBean;
+import com.mpp.project.library.ui.adapter.RecordAdapter;
+import com.mpp.project.library.ui.bean.CheckoutBean;
 import com.mpp.project.library.presenter.CheckOutPresenter;
 
 import java.util.ArrayList;
