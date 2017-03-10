@@ -88,8 +88,16 @@ public class DefaultBookAPIImpl implements BookAPI {
     }
 
     public List<BookEntity> getBooksFromISBN(String isbn) {
-        Set<String> bookIDs =  reditHelper.GetSet(isbn);
         List<BookEntity> bookEntities = new ArrayList<>();
+
+        Set<String> bookIDs;
+        try {
+            bookIDs = reditHelper.GetSet(isbn);;
+        } catch (Exception e) {
+            return bookEntities;
+        }
+
+
 
         for (String bookID : bookIDs) {
             BookEntity bookEntity = null;

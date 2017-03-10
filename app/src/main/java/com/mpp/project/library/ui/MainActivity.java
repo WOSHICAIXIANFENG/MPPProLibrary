@@ -179,6 +179,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     editMemberFragment.enableAllEditFields();
                     showSaveBtnFromEdit();
                 }
+            } else if ("Print".equals(title)) {
+                if (mCurrentFragment instanceof QueryPrintFragment) {
+                    QueryPrintFragment queryPrintFragment = (QueryPrintFragment) mCurrentFragment;
+                    queryPrintFragment.printAllCheckoutRecord();
+                }
             }
 
             return true;
@@ -204,6 +209,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             openAddBookPage();
         } else if (id == R.id.nav_addCopy) {
             openAddCopyPage();
+        } else if (id == R.id.nav_queryPrint) {
+            openQueryPrintPage();
         } else if (id == R.id.nav_logout) {
             showSimpleLogoutDialog();
         } else if (id == R.id.nav_setting) {
@@ -223,7 +230,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // show back icon
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        mDoneAction.setVisible(true);
+        if (mDoneAction != null)
+            mDoneAction.setVisible(true);
 
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,7 +240,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     getFragmentManager().popBackStackImmediate();
                     mCurrentFragment = getFragmentManager().findFragmentById(R.id.frame_content);
                     mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-                    mDoneAction.setVisible(false);
+                    if (mDoneAction != null)
+                        mDoneAction.setVisible(false);
                 } else {
                     // todo
                     toggleDrawer();
@@ -270,14 +279,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void showEditBtn() {
-        mDoneAction.setTitle("Edit");
-        mDoneAction.setVisible(true);
+        if (mDoneAction != null) {
+            mDoneAction.setTitle("Edit");
+            mDoneAction.setVisible(true);
+        }
     }
 
     @Override
     public void showSaveBtnFromEdit() {
-        mDoneAction.setTitle("Save");
-        mDoneAction.setVisible(true);
+        if (mDoneAction != null) {
+            mDoneAction.setTitle("Save");
+            mDoneAction.setVisible(true);
+        }
     }
 
     @Override
@@ -312,6 +325,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getFragmentManager().beginTransaction().addToBackStack("CheckoutFragment").replace(R.id.frame_content, mCurrentFragment).commit();
         if (mToolbar != null)
             mToolbar.setTitle("Check Out");
+
+        if (mDoneAction != null)
+            mDoneAction.setVisible(false);
     }
 
     public void openAddMemberPage() {
@@ -319,14 +335,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getFragmentManager().beginTransaction().addToBackStack("AddAMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
         mToolbar.setTitle("Add Member");
 
-        mDoneAction.setTitle("Save");
-        mDoneAction.setVisible(true);
+        if (mDoneAction != null) {
+            mDoneAction.setTitle("Save");
+            mDoneAction.setVisible(true);
+        }
     }
 
     public void openEditMemberPage() {
         mCurrentFragment = new EditMemberFragment();
         getFragmentManager().beginTransaction().addToBackStack("EditMemberFragment").replace(R.id.frame_content, mCurrentFragment).commit();
         mToolbar.setTitle("Edit Member");
+
+        if (mDoneAction != null)
+            mDoneAction.setVisible(false);
     }
 
     public void openAddBookPage() {
@@ -345,7 +366,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getFragmentManager().beginTransaction().addToBackStack("AddCopyFragment").replace(R.id.frame_content, mCurrentFragment).commit();
         mToolbar.setTitle("Add Copy");
 
-        mDoneAction.setVisible(false);
+        if (mDoneAction != null)
+            mDoneAction.setVisible(false);
+    }
+
+    public void openQueryPrintPage() {
+        mCurrentFragment = new QueryPrintFragment();
+        getFragmentManager().beginTransaction().addToBackStack("QueryPrintFragment").replace(R.id.frame_content, mCurrentFragment).commit();
+        mToolbar.setTitle("Query Records");
+
+        if (mDoneAction != null) {
+            mDoneAction.setTitle("Print");
+            mDoneAction.setVisible(true);
+        }
     }
 
     private void showSimpleLogoutDialog() {

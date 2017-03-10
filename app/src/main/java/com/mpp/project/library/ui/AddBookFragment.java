@@ -67,7 +67,10 @@ public class AddBookFragment extends BaseFragment implements IBookView {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRVAuthorList.setLayoutManager(linearLayoutManager);
 
-        authorList = new ArrayList<>();
+        if (authorList == null) {
+            authorList = new ArrayList<>();
+        }
+
 //        authorList.add(new Author("firstName", "lastName", "address", "phone", "credentials", "shortbio"));
 //        mBeans.add(new CheckoutBean("Book Name1", "Book Name1", "2016-12-23"));
 //        mBeans.add(new CheckoutBean("Book Name2", "Book Name2", "2016-12-03"));

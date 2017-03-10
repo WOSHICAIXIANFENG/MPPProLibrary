@@ -41,6 +41,10 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
+    public List<CheckoutBean> getDataSet() {
+        return recordList;
+    }
+
     public void clearDataSet() {
         this.recordList.clear();
         notifyDataSetChanged();
@@ -53,8 +57,8 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ViewHolder
 
         CheckoutBean record = recordList.get(position);
 
-        holder.title.setText(record.getBookTitle());
-        holder.date.setText(record.getDate());
+        holder.title.setText("Book Name: " + record.getBookTitle());
+        holder.date.setText("Checkout Date: " + record.getDate());
     }
 
     @Override

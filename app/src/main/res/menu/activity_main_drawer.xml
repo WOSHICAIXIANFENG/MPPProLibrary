@@ -23,6 +23,11 @@
             android:id="@+id/nav_addCopy"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Add Copy for Book" />
+
+        <item
+            android:id="@+id/nav_queryPrint"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="Query and Print" />
     </group>
 
     <item android:title="Others">
